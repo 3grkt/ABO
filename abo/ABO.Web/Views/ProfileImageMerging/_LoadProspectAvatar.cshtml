@@ -1,0 +1,45 @@
+﻿@model ABO.Web.Models.ProfileImageMerging.ProspectAvatarModel
+
+@{
+    var firstPersonImgSrc = string.Empty;
+    if (Model.FirstPersonImage.Value != null)
+    {
+        var base64 = Convert.ToBase64String(Model.FirstPersonImage.Value.img_streamdata);
+        firstPersonImgSrc = string.Format("data:image/{1};base64,{0}", base64, Model.FirstPersonImage.Value.img_extension);
+    }
+
+    var secondPersonImageSrc = string.Empty;
+    if (Model.SecondPersonImage.Value != null)
+    {
+        var base64 = Convert.ToBase64String(Model.SecondPersonImage.Value.img_streamdata);
+        secondPersonImageSrc = string.Format("data:image/{1};base64,{0}", base64, Model.SecondPersonImage.Value.img_extension);
+    }
+}
+
+@if (!string.IsNullOrEmpty(firstPersonImgSrc))
+{
+    <div id="firstPersonWrapper" class="person-image-wrapper">
+        <img src="@firstPersonImgSrc" id="firstPersonImage"/>
+        <label>1st</label>
+    </div>
+}
+else if (string.IsNullOrEmpty(firstPersonImgSrc) && !string.IsNullOrEmpty(Model.FirstPersonImage.Key))
+{
+    <div class="alert alert-warning" role="alert" id='firstPersonImageNotFound'>
+        @T("ProfileImageMerging.FirstImage.NotFound")
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(secondPersonImageSrc))
+{
+    <div id="secondPersonWrapper" class="person-image-wrapper">
+        <img src="@secondPersonImageSrc" id="secondPersonImage"/>
+        <label>2nd</label>
+    </div>
+}
+else if (string.IsNullOrEmpty(secondPersonImageSrc) && !string.IsNullOrEmpty(Model.SecondPersonImage.Key))
+{
+    <div class="alert alert-warning" role="alert" id='secondPersonImageNotFound'>
+        @T("ProfileImageMerging.SecondImage.NotFound")
+    </div>
+}

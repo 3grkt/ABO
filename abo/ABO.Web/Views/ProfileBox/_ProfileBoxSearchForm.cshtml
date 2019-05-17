@@ -1,0 +1,52 @@
+﻿@model ABO.Web.Models.ProfileBox.ProfileBoxSearchModel
+<form name="search_form" class="form-horizontal" role="form">
+
+        <div class="row">
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.ProfileBoxName, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(m=> m.ProfileBoxName,new { @class = "form-control" })
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.UserID, new { @class = "col-md-5" })
+            @*<label for="inputEmail3" class="col-md-5">User ID</label>*@
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.UserID, ViewBag.Users as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @*<input type="email" class="form-control" id="inputEmail3" placeholder="Email">*@
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.WarehouseID, new { @class = "col-md-5" })
+            @*<label for="inputEmail3" class="col-md-5">Kho</label>*@
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.WarehouseID, ViewBag.Warehouses as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @*<input type="email" class="form-control" id="inputEmail4" placeholder="Email">*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-1 col-md-offset-1">
+                <button type="submit" class="btn btn-primary">Tìm</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.StatusID, new { @class = "col-md-5" })
+            @*<label for="inputEmail3" class="col-md-5">Trang Thai Thung</label>*@
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.StatusID, ViewBag.StatusList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @*<input type="email" class="form-control" id="inputEmail5" placeholder="Email">*@
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.ProfileTypeID, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.ProfileTypeID, ViewBag.ProfileType as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</form>

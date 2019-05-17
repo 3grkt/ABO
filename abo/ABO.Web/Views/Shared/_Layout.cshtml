@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - @T("Common.AppFullName")</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrap/bootstrap.min.css")
+
+    <!-- SB Admin theme -->
+    @Styles.Render("~/Content/metisMenu.css", "~/Content/sb-admin-2.css")
+
+    @Styles.Render("~/Content/font-awesome/font-awesome.min.css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap-datetimepicker.min.css")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    @Styles.Render("~/Content/alertify")
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/images/amway_logo.jpg")" />
+                    @T("Common.AppName")</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="user-info">
+                    @Html.Partial("_LoginPartial")
+                </li>
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li @Html.GetActiveMenuTab("Home")>
+                            <a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home"></i>&nbsp;@T("Menu.Home")</a>
+                        </li>
+
+                        @if (Html.HasPermission(UserPermission.ManageProfileType, UserPermission.ManageProfileBox, UserPermission.CreateProfileBox, UserPermission.ViewDistributorProfile, UserPermission.ManageDistributorProfile))
+                        {
+                            <li @Html.GetActiveMenuTab(new string[] { "ProfileType", "ProfileBox", "Profile" })>
+                                <a href="#"><i class="fa fa-briefcase"></i>&nbsp;@T("Menu.ProfileGroup")</a>
+                                <ul class="nav nav-second-level">
+                                    @if (Html.HasPermission(UserPermission.ManageProfileType))
+                                    {
+                                        <li @Html.GetActiveMenuTab("ProfileType")>
+                                            <a href="@Url.Action("Index", "ProfileType")"><i class="fa fa-caret-right"></i>&nbsp;@T("Menu.ProfileType")</a>
+                                        </li>
+                                    }
+                                    @if (Html.HasPermission(UserPermission.ManageProfileBox, UserPermission.CreateProfileBox))
+                                    {
+                                        <li class="@Html.GetActiveMenuTab("ProfileBox", false)">
+                                            <a href="@Url.Action("Index", "ProfileBox")"><i class="fa fa-caret-right"></i>&nbsp;@T("Menu.ProfileBox")</a>
+                                        </li>
+                                    }
+                                    @if (Html.HasPermission(UserPermission.ManageDistributorProfile, UserPermission.ViewDistributorProfile))
+                                    {
+                                        <li class="@Html.GetActiveMenuTab("Profile", false)">
+                                            <a href="@Url.Action("Index", "Profile")"><i class="fa fa-caret-right"></i>&nbsp;@T("Menu.Profile")</a>
+                                        </li>
+                                    }
+
+                                    <li class="@Html.GetActiveMenuTab("ProfileImageMerging", false)">
+                                        <a href="@Url.Action("Index", "ProfileImageMerging")"><i class="fa fa-caret-right"></i>&nbsp;@T("Menu.ProfileImageMerging")</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (Html.HasPermission(UserPermission.ViewDistributorUpdate, UserPermission.PrintDistributorLetter))
+                        {
+                            <li @Html.GetActiveMenuTab("Distributor")>
+                                <a href="#"><i class="fa fa-users"></i>&nbsp;@T("Menu.Distributor")</a>
+                                <ul class="nav nav-second-level">
+                                    @if (Html.HasPermission(UserPermission.ViewDistributorUpdate))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("NotScanned", "Distributor")"><i class="fa fa-caret-right"></i>&nbsp;@T("Menu.NotScannedDistributor")</a>
+                                        </li>
+                                    }
+                                    @if (Html.HasPermission(UserPermission.PrintDistributorLetter))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("PrintLetter", "Distributor")"><i class="fa fa-caret-right"></i>&nbsp;@T("Menu.PrintLetter")</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+
+                        @if (Html.HasPermission(UserPermission.ViewProfileScanResult))
+                        {
+                            <li @Html.GetActiveMenuTab("ProfileScan")>
+                                <a href="@Url.Action("Index", "ProfileScan")"><i class="fa fa-retweet"></i>&nbsp;@T("Menu.ProfileScan")</a>
+                            </li>
+                        }
+
+                        @if (Html.HasPermission(UserPermission.PurgeData))
+                        {
+                            <li @Html.GetActiveMenuTab("DataPurge")>
+                                <a href="@Url.Action("Index", "DataPurge")"><i class="fa fa-archive"></i>&nbsp;@T("Menu.DataPurge")</a>
+                            </li>
+                        }
+
+                        @if (Html.HasPermission(UserPermission.ManageUser))
+                        {
+                            <li @Html.GetActiveMenuTab("User")>
+                                <a href="@Url.Action("Index", "User")"><i class="fa fa-user"></i>&nbsp;@T("Menu.User")</a>
+                            </li>
+                        }
+
+                        <li @Html.GetActiveMenuTab("Home")>
+                            <a href="@Url.Action("Help", "Home")"><i class="fa fa-question-circle"></i>&nbsp;@T("Menu.Help")</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row page-header">
+                            <div class="col-md-4 no-padding">
+                                <h3 class="">@ViewBag.Title</h3>
+                            </div>
+                            <div class="col-md-8 no-padding text-right">
+                                @{
+                                    var breadcrumb = ViewBag.Breadcrumb as ABO.Web.Models.Common.PageBreadcrumb;
+                                }
+                                @if (breadcrumb != null)
+                                {
+                                    @Html.Partial("_PageBreadcrumb", breadcrumb)
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                @RenderSection("featured", required: false)
+                <div class="row">
+                    <div class="col-lg-12">
+                        @Html.Partial("_Notification")
+                        @RenderBody()
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+        <!-- Footer -->
+        <div id="footer">
+            <div class="container-fluid">
+                <p class="text-muted">
+                    <span class="app-desc">@T("Common.AppDescription")</span>
+                    <br />
+                    @T("Common.Copyright")
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/abo/init.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    @Scripts.Render("~/Scripts/metisMenu.js", "~/Scripts/sb-admin-2.js")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/aboUtils.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/moment.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/bootstrap-datetimepicker.js")"></script>
+    @Scripts.Render("~/Scripts/alertify");
+
+    @RenderSection("scripts", required: false)
+
+    @Html.Partial("_ModalDialog")
+</body>
+</html>

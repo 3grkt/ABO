@@ -1,0 +1,87 @@
+﻿@model ABO.Web.Models.ProfileBox.ProfileBoxInfomationModel
+
+<div class="panel panel-default">
+    @using (@Html.BeginForm("Insert", "ProfileBox", FormMethod.Post, new { @style = "padding-top:15px", @onsubmit = "PreSubmit()" }))
+    { 
+        @Html.HiddenFor(m => m.CurrentBoxCount)
+        @Html.HiddenFor(m => m.CurrentWHYear);
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.Name, new { @class = "col-md-2" })
+                @*<label for="inputEmail3" class="col-md-2">Ten Thung</label>*@
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" , @onkeyup = "buildFolderPath()"})
+                    @*<input type="text" class="form-control" id="DistNo" placeholder="Email">*@
+                </div>
+                @Html.LabelFor(m => m.ProfileType, new { @class = "col-md-2" })
+                @*<label for="inputEmail3" class="col-md-2 col-md-offset-1">Loai HS</label>*@
+                <div class="col-md-3 ">
+                    @Html.DropDownListFor(m => m.ProfileType, Model.ProfileTypeList, new { @class = "form-control", @onchange = "onProfileTypeChanged(this)" })
+                    @*<input type="text" class="form-control" id="DistName" placeholder="">*@
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-md-2" })
+                @*<label for="inputEmail3" class="col-md-2">User ID</label>*@
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    @*<input type="text" class="form-control" id="DistNo" placeholder="Email">*@
+                </div>
+                @Html.LabelFor(m => m.WarehouseId, new { @class = "col-md-2" })
+                @*<label for="inputEmail3" class="col-md-2 col-md-offset-1">Warehouse ID</label>*@
+                <div class="col-md-3 ">
+                    @*@Html.DropDownListFor(m => m.WarehouseId, Model.WarehousesList, new { @class = "form-control" })*@
+                    @Html.TextBoxFor(m => m.WarehouseName, new { @class = "form-control", @disabled = "disabled" })
+                    @*<input type="text" class="form-control" id="DistName" placeholder="">*@
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.FolderPath, new { @class = "col-md-2" })
+                @*<label for="inputEmail3" class="col-md-2">User ID</label>*@
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.FolderPath, new { @class = "form-control", @disabled = "disabled" })
+                    @*<input type="text" class="form-control" id="DistNo" placeholder="Email">*@
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <div class="col-md-2 col-md-offset-5">
+                    <input type="submit"  class="btn btn-primary" id="Save" value="@T("Common.Save")">
+
+                    <input type="button" class="btn btn-primary" id="Cancel" value="Cancel" onclick="cancel()" >
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        buildFolderPath();
+
+    });
+    var box_name = "@Model.Name";
+    function buildFolderPath() {
+        var prefix = "@((ViewBag.ProfileBoxRootPath as string).Replace("\\", "\\\\"))";
+        box_name = $('#Name').val();
+        var warehouse = $('#WarehouseName').val().trim();
+        var path = prefix + "\\" + warehouse + "\\" + box_name;
+        $('#FolderPath').val(path);
+    }
+
+    function PreSubmit() {
+        $('#FolderPath').removeAttr("disabled");
+    }
+
+    function cancel()
+    {
+        $('#myForm').fadeOut();
+    }
+</script>

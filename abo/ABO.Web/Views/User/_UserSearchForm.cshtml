@@ -1,0 +1,25 @@
+﻿@model ABO.Web.Models.User.UserSearchModel
+<form name="search_form" class="form-horizontal" role="form">
+    <div class="row">
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.WarehouseId, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.WarehouseId, ViewBag.Warehouses as IEnumerable<SelectListItem>, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            @Html.LabelFor(m => m.UserId, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.UserId, ViewBag.Users as IEnumerable<SelectListItem>, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-1 col-md-offset-1">
+                <button type="submit" class="btn btn-primary">Tìm</button>
+            </div>
+        </div>
+    </div>
+
+</form>

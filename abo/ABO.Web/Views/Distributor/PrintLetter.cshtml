@@ -1,0 +1,82 @@
+﻿@model ABO.Web.Models.Distributors.DistributorLetterModel
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+
+@{
+    ViewBag.Title = T("PageTitle.PrintLetter");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.PrintLetter"), string.Empty);
+}
+
+
+@Html.Partial("_NewLetterSearchForm", Model.Search)
+@using (Html.BeginForm())
+{
+    @Html.Grid(Model.Data).Columns(column =>
+    {
+        column.For(model => Html.ActionLink(model.DistNumber.ToString(), "Detail", new { id = model.DistNumber }))
+            .Named(T("NewLetter.Distributor"))
+            .SortColumnName("")
+            .Attributes(style => "width: 10%;");
+        column.For(model => model.OldDistNumber)
+            .Named(T("NewLetter.OldDistributor"))
+            .SortColumnName("")
+            .Attributes(style => "width: 8%;");
+        column.For(model => model.DistAddress)
+            .Named(T("NewLetter.Address")).SortColumnName("").Attributes(style => "width: 15%;");
+        column.For(model => model.SponsorNum)
+            .Named(T("NewLetter.Sponsor"))
+            .SortColumnName("")
+            .Attributes(style => "width: 10%;");
+        column.For(model => model.SponsorAddress)
+            .Named(T("NewLetter.Address"))
+            .SortColumnName("")
+            .Attributes(style => "width: 10%;");
+        column.For(model => model.PlatiumNumber)
+            .Named(T("NewLettter.Platium"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+        column.For(model => model.PlatiumAddress)
+            .Named(T("NewLetter.Address"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+        column.For(model => model.LetterDate.ToString("dd/MM/yyyy"))
+            .Named(T("DistributorLetter.LetterDate"))
+            .SortColumnName("")
+            .Attributes(style => "width: 8%;");
+
+        column.For(model => model.Creator)
+            .Named(T("NewLetter.Creator"))
+            .SortColumnName("")
+            .Attributes(style => "width: 5%;");
+        column.For(model => model.Warehouse)
+            .Named(T("NewLetter.Warehouse"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+    }).Empty(T("Common.Message.NoRecordFound"))
+    @Html.GetPager(Model.Pager)
+
+
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div class="col-md-1 col-md-offset-10">
+                <button type="submit" name="ExportToExcel" class="btn btn-default">@T("Common.Excel")</button>
+            </div>
+        </div>
+    </div>
+}
+@Html.Partial("_AddNewLetter", Model.NewLetter);
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#startdatepicker').datetimepicker();
+        });
+    </script>
+}

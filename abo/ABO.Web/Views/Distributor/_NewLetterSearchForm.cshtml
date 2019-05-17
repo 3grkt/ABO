@@ -1,0 +1,38 @@
+﻿@model ABO.Web.Models.Distributors.DistributorLetterSearchModel
+
+<form class="form-horizontal" role="form">
+
+    <div class="row">
+        <div class="form-group col-md-10">
+            @Html.Label(T("DistributorLetter.NewDistributor"), new { @class = "col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.DistributorNumber, new { @class = "form-control" })
+            </div>
+             @Html.LabelFor(m => m.WarehouseID, new { @class = "col-md-1" })
+            @*<label for="inputEmail3" class="col-md-5">Kho</label>*@
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.WarehouseID, ViewBag.Warehouses as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @*<input type="email" class="form-control" id="inputEmail4" placeholder="Email">*@
+            </div>
+        </div>
+
+    <div class="form-group col-md-2">
+        <div class="col-md-6">
+            <button type="submit" value="search" class="btn btn-primary"><i class="fa fa-search"></i>@T("Common.Search")</button>
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-10">
+            @Html.Label(T("DistributorLetter.LetterDate"), new { @class = "col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.StartDate)
+            </div>
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.EndDate)
+            </div>
+        </div>
+
+    </div>
+</form>

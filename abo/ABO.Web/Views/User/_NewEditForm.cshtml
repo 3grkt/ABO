@@ -1,0 +1,77 @@
+﻿@model ABO.Web.Models.User.UserModel
+
+@{
+    var controlTitle = Model.IsEditMode == false ? T("User.AddNew") : T("User.Edit");
+}
+
+
+
+<fieldset class="fieldset">
+    <legend>@controlTitle</legend>
+    <div class="row">
+        <div class="col-md-9">
+            @using (@Html.BeginForm("InsertEdit", "User", FormMethod.Post, new { @style = "padding-top:15px" }))
+            { 
+                <div class="col-md-9">
+                    <div class="row form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            @if (Model.IsEditMode == false)
+                            {
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            }
+                            else
+                            { 
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.HiddenFor(m => m.UserId)
+                            }
+                            @Html.HiddenFor(m => m.IsEditMode)
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.LabelFor(m => m.FullName, new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.LabelFor(m => m.WarehouseId, new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.WarehouseId, Model.WarehouseList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.LabelFor(m => m.RoleId, new { @class = "col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.RoleId, Model.RoleList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="submit" id="save" name="save" value="save" class="btn btn-primary" title="@T("Common.Save")">@T("Common.Save")</button>
+                            <button type="button" id="cancel" name="cancel" value="cancel" class="btn btn-default" title="@T("Common.Cancel")">@T("Common.Cancel")</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</fieldset>
+
+
+<script>
+    $(document).ready(function () {
+        $('#cancel').click(function () {
+            $('#add_edit_form').fadeOut();
+        });
+
+    });
+    function PreSubmit()
+    {
+
+    }
+</script>

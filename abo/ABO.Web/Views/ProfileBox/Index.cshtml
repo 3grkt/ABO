@@ -1,0 +1,91 @@
+﻿@model ABO.Web.Models.ProfileBox.ProfileBoxsModel
+@using ABO.Core
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+@{
+    ViewBag.Title = T("PageTitle.ProfileBox");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.ProfileBox"), string.Empty);
+}
+
+@Html.Partial("_ProfileBoxSearchForm", Model.SearchModel)
+@using (Html.BeginForm())
+{
+    @Html.Grid(Model.Data).Columns(column =>
+    {
+        column.For(model => Html.CheckBox("IsSelected-" + model.Id))
+                .Header("<th><input type='checkbox' id='headerCheckbox' /></th>")
+                .Attributes(style => "width: 3%;");
+        column.For(model => Html.ActionLink(model.Name, "Detail", new { id = model.Id }))
+            .Named(T("ProfileBox.Name"))
+            .SortColumnName("")
+            .Attributes(style => "width: 10%;");
+        column.For(model => model.CreatedDate).Format("{0:dd/MM/yyyy}")
+            .Named(T("ProfileBox.CreatedDate")).SortColumnName("").Attributes(style => "width: 15%;");
+        column.For(model => model.UserName)
+            .Named(T("ProfileBox.UserID"))
+            .SortColumnName("")
+            .Format("{0:N0}")
+            .Attributes(style => "width: 10%; text-align: right;")
+            .HeaderAttributes(style => "text-align: right;");
+        column.For(model => model.WarehouseName)
+            .Named(T("ProfileBox.WareHouse"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+        column.For(model => model.Status)
+            .Named(T("ProfileBox.BoxStatus2"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+        column.For(model => model.ADACount)
+            .Named(T("ProfileBox.AdaCount"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+    }).Empty(T("Common.Message.NoRecordFound"))
+    @Html.GetPager(Model.Pager)
+    <div class=" row">
+        <div class="col-md-12 text-right" style="padding-top: 10px">
+            @if (ViewBag.ShowAddButton != null)
+            {
+                <input type="button" class="btn btn-primary" id="loadForm" value="@T("ProfileBox.AddNewBox")">
+            }
+            @if (Html.HasPermission(UserPermission.ManageProfileBox))
+            {
+                <input type="submit" class="btn btn-primary" name="deleteBox" value="@T("ProfileBox.DiscardBoxes")">
+            }
+            <input type="submit" class="btn btn-primary" name="ExportToExcel"  value="@T("Common.Excel")">
+        </div>
+
+    </div>
+}
+
+<div id="NewForm" style="padding-top: 20px; display: none;">
+    @*@Html.Partial("_ProfileBoxAddNew", Model.ProfileBox)*@
+</div>
+
+<div id="myForm" style="padding-top: 20px; display: none;">
+</div>
+<script>
+    var getBoxNameUrl = '@Html.Raw(Url.Action("GetProfileBoxName", "ProfileBox", new { profileType = "PROFILE_TYPE", warehouseId = DependencyResolver.Current.GetService<IWorkContext>().User.WarehouseId, boxCount = -9999, year = -8888 }))';
+
+    $(document).ready(function () {
+
+        $('#loadForm').click(function () {
+            $('#myForm').load('@Url.Action("GetProfileBoxNewForm", "ProfileBox", null, Request.Url.Scheme)');
+            $('#myForm').fadeIn();
+        });
+    });
+
+    function onProfileTypeChanged(option) {
+        var url = getBoxNameUrl
+                    .replace('PROFILE_TYPE', $(option).find(':selected').text()) // replace profile type
+                    .replace('-9999', $('#CurrentBoxCount').val()) // replace current box count
+                    .replace('-8888', $('#CurrentWHYear').val()); // replace current year
+        $.post(url, '', function (data) {
+            $('#Name').val(data);
+            buildFolderPath(); // this is put in _ProfileBoxAddNew control
+        });
+    }
+</script>

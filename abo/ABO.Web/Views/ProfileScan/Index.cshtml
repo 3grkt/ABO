@@ -1,0 +1,84 @@
+﻿@model ProfileScanIndexModel
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+@using ABO.Core
+@using ABO.Core.Infrastructure
+@using ABO.Web.Helpers
+@using ABO.Web.Models.ProfileScans;
+
+@{
+    ViewBag.Title = @T("PageTitle.DailyScanResult");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.DailyScanResult"), string.Empty);
+}
+
+<form class="form-horizontal" role="form">
+    <div class="row">
+        <div class="form-group col-md-9">
+            @Html.Label(T("ProfileScan.Search.ScannedDate"), new { @class = "col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Search.StartDate)
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                @Html.EditorFor(m => m.Search.EndDate)
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <div class="col-md-10 col-md-offset-2">
+                <button type="submit" value="search" class="btn btn-primary"><i class="fa fa-search"></i>@T("Common.Search")</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-9">
+            @Html.LabelFor(m => m.Search.WarehouseId, new { @class = "col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.Search.WarehouseId, Model.AvailableWarehouses, new { @class = "form-control" })
+            </div>
+            @Html.LabelFor(m => m.Search.Result, new { @class = "col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.Search.Result, Model.AvailableResults, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</form>
+
+@using (Html.BeginForm())
+{    
+    <div class="row">
+        <div class="col-md-12">
+            <h5>@T("Profile.YourUnboxedList")</h5>
+            @Html.Grid(Model.Scans).Sort(ViewBag.Sort as GridSortOptions).Columns(column =>
+        {
+            column.For(model => Html.GetDateTimeString(model.ScannedDate))
+                .Named(T("ProfileScan.ScannedDate"))
+                .SortColumnName("ScannedDate")
+                .Attributes(style => "width: 15%;");
+            column.For(model => model.BoxName)
+                .Named(T("ProfileScan.BoxName"))
+                .SortColumnName("ProfileBox.Name")
+                .Attributes(style => "width: 20%;");
+            column.For(model => model.Folder)
+                .Named(T("ProfileScan.Folder"))
+                .SortColumnName("ProfileBox.ScannedFolder")
+                .Attributes(style => "width: 15%;");
+            column.For(model => Html.GetFormattedNumber(model.FileCount))
+                .Named(T("ProfileScan.FileCount"))
+                .SortColumnName("FileCount")
+                .Attributes(style => "width: 10%;");
+            column.For(model => model.Result.ToString().ToUpper())
+                .Named(T("ProfileScan.Result"))
+                .SortColumnName("Result")
+                .Attributes(style => "width: 10%;");
+            column.For(model => model.Description)
+                .Named(T("ProfileScan.Description"))
+                .SortColumnName("Description")
+                .Attributes(style => "width: 30%;")
+                .Encode(false);
+        }).Empty(T("Common.Message.NoRecordFound"))
+
+            @Html.GetPager(Model.Pager)
+        </div>
+    </div>    
+}

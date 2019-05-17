@@ -1,0 +1,143 @@
+﻿@model ProfileTypeIndexModel
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+@using ABO.Web.Models.ProfileTypes
+
+@{
+    ViewBag.Title = T("PageTitle.ProfileType");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.ProfileType"), string.Empty);
+
+    var noRecord = Model.ProfileTypes.Count == 0;
+}
+
+@Html.Grid(Model.ProfileTypes).Sort(ViewBag.Sort as GridSortOptions).Columns(column =>
+    {
+        column.For(model => model.Name)
+            .Named(T("ProfileType.Name"))
+            .SortColumnName("Name")
+            .Attributes(style => "width: 10%;");
+        column.For(model => model.StoredYears)
+            .Named(T("ProfileType.StoredYears"))
+            .SortColumnName("StoredYears")
+            .Attributes(style => "width: 20%;");
+        column.For(model => model.Description)
+            .Named(T("ProfileType.Description"))
+            .SortColumnName("Description")
+            .Attributes(style => "width: 15%;");
+        column.For(model => model.Scanned ? "<i class=\"fa fa-check\"></i>" : "")
+            .Named(T("ProfileType.Scanned"))
+            .SortColumnName("Scanned")
+            .Attributes(style => "width: 15%; text-align: center;")
+            .HeaderAttributes(style => "text-align: center;")
+            .Encode(false);
+        column.For(model => model.Image ? "<i class=\"fa fa-check\"></i>" : "")
+            .Named(T("ProfileType.Image"))
+            .SortColumnName("Image")
+            .Attributes(style => "width: 10%; text-align: center;")
+            .HeaderAttributes(style => "text-align: center;")
+            .Encode(false);
+        column.For(model => "<a href=\"javascript:profileType.edit(" + model.Id + ")\" class=\"fa fa-edit\" title=\"" + T("Common.Edit") + "\"></a>" + "&nbsp;" +
+                            (!model.SystemType ? ("<a href=\"javascript:profileType.del(" + model.Id + ")\" class=\"fa fa-trash delete-icon\" title=\"" + T("Common.Delete") + "\"></a>") : ("<i class=\"fa fa-trash delete-icon-disabled\"/>")))
+            .Attributes(style => "width: 5%;", @class => "fa-icon")
+            .Encode(false);
+    }).Empty(T("Common.Message.NoRecordFound"))
+
+<div class="buttons text-right">
+    <button type="button" id="add" name="add" value="add" class="btn btn-primary" title="@T("ProfileType.Add")">
+        @T("ProfileType.Add")
+    </button>
+    @*<button type="button" id="delete" name="delete" value="delete" class="btn btn-primary" title="@T("ProfileType.Delete")" @(noRecord ? "disabled" : "")>
+        @T("ProfileType.Delete")
+    </button>*@
+</div>
+
+@*<div class="row">
+    <div class="col-md-6">*@
+        <div id="editPanel" style="display: none;"></div>
+    @*</div>
+</div>*@
+
+@section scripts{
+    <script type="text/javascript">
+        var profileType = new function () {
+            var me = this;
+            this.editPanel = {};
+
+            this.edit = function (id) {
+                $.post('@Url.Action("AjaxEdit")', 'id=' + id, function (data) {
+                    me.editPanel.html(data);
+                    me.editPanel.show();
+                    me.attachPanelEvents();
+                });
+            };
+
+            this.showCreateForm = function () {
+                $.post('@Url.Action("AjaxCreate")', '', function (data) {
+                    me.editPanel.html(data);
+                    me.editPanel.show();
+                    me.attachPanelEvents();
+                });
+            };
+
+            this.del = function (id) {
+                if (confirm('@T("ProfileType.ConfirmDelete").ToJavascriptString()')) {
+                    try {
+                        $.post('@Url.Action("AjaxDelete")', 'id=' + id, function (data) {
+                            if (data.result == 'Success') {
+                                location.reload();
+                            } else if (data.result == 'NotValid') {
+                                alert('@T("ProfileType.CannotDeleteSystemType").ToJavascriptString()');
+                            } else {
+                                alert('@T("ProfileType.FailedToDelete").ToJavascriptString()');
+                            }
+                        });
+                }
+                catch (ex) {
+                    alert('@T("ProfileType.FailedToDelete").ToJavascriptString()');
+                    }
+                }
+            };
+
+            this.save = function () {
+                $.post('@Url.Action("CreateOrEdit")', $('#editForm').serialize(), function (data) {
+                    if (data.result == 'Success') {
+                        location.reload();
+                    } else {
+                        alert('@T("ProfileType.FailedToSave")');
+                    }
+                });
+                return false;
+            };
+
+            this.cancel = function () {
+                me.editPanel.hide();
+            };
+
+            this.attachPanelEvents = function () {
+                $('#save').unbind('click', profileType.save);
+                $('#save').bind('click', profileType.save);
+
+                $('#cancel').unbind('click', profileType.cancel);
+                $('#cancel').bind('click', profileType.cancel);
+            };
+
+            this.init = function (editPanelId) {
+                me.editPanel = $('#' + editPanelId);
+            };
+        };
+
+        $(document).ready(function () {
+            profileType.init('editPanel');
+
+            $('#add').click(function () {
+                profileType.showCreateForm();
+            });
+        });
+
+        function onCreateOrEditSuccess(data) {
+            alert(data);
+        }
+    </script>
+}

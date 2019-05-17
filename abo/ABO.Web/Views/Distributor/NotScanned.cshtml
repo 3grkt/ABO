@@ -1,0 +1,101 @@
+﻿@model NotScannedModel
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+@using ABO.Core
+@using ABO.Core.Infrastructure
+@using ABO.Web.Helpers
+@using ABO.Web.Models.Distributors;
+
+@{
+    ViewBag.Title = @T("PageTitle.NotScannedDistributorUpdates");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.NotScannedDistributorUpdates"), string.Empty);
+}
+
+<form class="form-horizontal" role="form">
+    <div class="row">
+        <div class="form-group col-md-8">
+            @Html.Label(T("Distributor.NotScanned.UpdatedDate"), new { @class = "col-md-3" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Search.StartDate)
+            </div>
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Search.EndDate)
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="col-md-6">
+                <button type="submit" value="search" class="btn btn-primary"><i class="fa fa-search"></i>@T("Common.Search")</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-8">
+            @Html.LabelFor(m => m.Search.WarehouseId, new { @class = "col-md-3" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.Search.WarehouseId, Model.AllWarehouses, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-8">
+            @Html.LabelFor(m => m.Search.UpdateType, new { @class = "col-md-3" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.Search.UpdateType, Model.AllDistributorUpdateTypes, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (Model.DistributorUpdates != null)
+{
+    using (Html.BeginForm())
+    {    
+    <div class="row">
+        <div class="col-md-12">
+            <h5>@T("Profile.YourUnboxedList")</h5>
+            @Html.Grid(Model.DistributorUpdates).Sort(ViewBag.Sort as GridSortOptions).Columns(column =>
+        {
+            column.For(model => model.DistNumber)
+                .Named(T("Distributor.NotScanned.DistNumber"))
+                .SortColumnName("DistNumber")
+                .Attributes(style => "width: 15%;");
+            column.For(model => model.DistName)
+                .Named(T("Distributor.NotScanned.DistName"))
+                .SortColumnName("Distributor.Name")
+                .Attributes(style => "width: 40%;");
+            column.For(model => Html.GetDateString(model.JoinDate))
+                .Named(T("Distributor.NotScanned.JoinDate"))
+                .SortColumnName("Distributor.JoinDate")
+                .Attributes(style => "width: 15%;");
+            column.For(model => Html.GetDateString(model.ExpiryDate))
+                .Named(T("Distributor.NotScanned.ExpiryDate"))
+                .SortColumnName("Distributor.ExpiryDate")
+                .Attributes(style => "width: 15%;");
+            column.For(model => model.UpdatedType)
+                .Named(T("Distributor.NotScanned.UpdatedType"))
+                .SortColumnName("UpdatedType")
+                .Attributes(style => "width: 15%;");
+        }).Empty(T("Common.Message.NoRecordFound"))
+
+            @Html.GetPager(Model.Pager)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" name="exportToExcel" value="exportToExcel" class="btn btn-primary">@T("Distributor.NotScanned.ExportToExcel")</button>
+        </div>
+    </div>
+    
+    }
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#startdatepicker').datetimepicker();
+        });
+    </script>
+}

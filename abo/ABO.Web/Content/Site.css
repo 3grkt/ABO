@@ -1,0 +1,380 @@
+﻿/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by its height */
+	margin: 0 auto -60px;
+	/* Pad bottom by footer height */
+	padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+	height: 60px;
+	border-top: solid 1px #eee;
+	/*background-color: #f5f5f5;*/
+	/*margin-top: 20px;*/
+}
+
+/* Add padding, alignment for footer */
+#footer .text-muted{
+	text-align: center;
+	padding-top: 10px;
+	line-height: 20px;
+}
+
+#footer .text-muted .app-desc{
+	font-size: 0.9em;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+#wrap > .container {
+	padding: 60px 15px 0;
+}
+
+.container .credit {
+	margin: 20px 0;
+}
+
+#footer > .container {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.navbar-default {
+    background-color: #fff;
+}
+.navbar-default .navbar-brand {
+    padding: 7px 15px;
+}
+
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus{
+	/*background-color: #f2f2f2;*/
+}
+.nav{
+	/*background-color: #f8f8f8;*/
+}
+.nav a{
+	color: #2d75b2;
+}
+#side-menu{
+	background-color: #f8f8f8;
+}
+code {
+	font-size: 80%;
+}
+
+.top-buffer-10 {
+	margin-top: 10px;
+}
+
+.form-horizontal .row{
+
+}
+
+.jumbotron-sm{
+	padding: 10px 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.fieldset{
+	border: solid 1px #ddd;
+	border-radius: 4px;
+	padding: 15px;
+	margin-top: 15px;
+}
+
+.fieldset legend{
+	padding: 0 10px;
+	width: inherit;
+	border-bottom: none;
+	font-size: 1em;
+	font-weight: 600;
+	margin-left: 10px;
+	margin-bottom: 0;
+}
+
+.page-container{
+	border: solid 1px #ccc;
+	border-radius: 4px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+.down-space-10{
+	margin-bottom: 10px;
+}
+.down-space-20{
+	margin-bottom: 20px;
+}
+form .disabled{
+	color: #999;
+}
+.breadcrumb{
+	background-color: transparent !important;
+	margin-bottom: 0;
+	margin-top: 27px;
+	padding-right: 2px;
+	font-size: 0.9em;
+}
+.breadcrumb a:hover{
+	text-decoration: none;
+}
+.breadcrumb li{
+	font-weight: 400;
+	display: inline;
+}
+.breadcrumb > li + li:before {
+  padding: 0 2px !important;
+  color: #333;
+  content: "\f105";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.page-header{
+	margin-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+.no-padding{
+	padding: 0 !important;
+}
+.user-info{
+	/*display: block;
+	position: relative;*/
+	margin-right: 0 !important;
+	color: #2d75b2;
+}
+.site-map, .site-map ul{
+	list-style: none;
+	padding-left: 10px;
+}
+.site-map > li{
+	/*padding-left: 10px;*/
+}
+.site-map > li > ul > li{
+	padding-left: 20px;
+}
+.site-map > li:before,.site-map > li > ul > li:before{
+	content: '|-----';
+	margin-right: 5px;
+}
+.panel-default > .panel-heading{
+	background-color: #428bca;
+	color: #fff;
+}
+.inventory-stat{
+	color: #2d75b2;
+}
+
+/* login
+----------------------------------------------------------*/
+#login {
+    display: block;
+    font-size: 1em;
+    text-align: right;
+	padding: 15px;
+}
+
+    #login a {
+        background-color: #d3dce0;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }
+
+    #login a.username {
+        background: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+    #login ul {
+        margin: 0;
+    }
+
+    #login li {
+        display: inline;
+        list-style: none;
+    }
+
+	#login form{
+		display:inline;
+	}
+
+/* Grid
+----------------------------------------------------------*/
+.grid{
+	width: 100%;
+	border: solid 1px #ddd;
+	margin-bottom: 10px;
+}
+.grid thead tr{
+	background-color: #428bca;
+	color: #fefefe;
+}
+.grid thead tr a{
+	color: #fff;
+}
+.grid thead tr th{
+	padding: 5px;
+}
+.grid tbody tr td{
+	padding: 5px;
+}
+.grid .gridrow{
+	
+}
+.grid .gridrow_alternate
+{
+	background-color: #F2F2F2;
+}
+.grid .sort_asc:before{
+	font-family: 'FontAwesome';
+	content: "\f0d8";
+	margin-right: 2px;
+	color: #fff;
+}
+.grid .sort_desc:before{
+	font-family: 'FontAwesome';
+	content: "\f0d7";
+	margin-right: 2px;
+	color: #fff;
+}
+.grid-pager{
+	margin: 5px 0;
+}
+.page-number, .page-change {
+	width: 40px;
+}
+
+/* styles for validation helpers
+----------------------------------------------------------*/
+.field-validation-error {
+    color: #a94442;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border-color: #a94442;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	color: #a94442;
+}
+
+.input-validation-error:focus{
+	border-color: #843534;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #a94442;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Custom
+----------------------------------------------------------*/
+.table-form{
+	width: 100%;
+}
+.table-form .col-left{
+	width: 40%;
+}
+.table-form .col-right{
+	width: 60%;
+}
+.fa-icon a{
+	text-decoration: none;
+}
+.delete-icon{
+	color: #ff0000;
+}
+.delete-icon:hover{
+	color: #CC0000;
+}
+.delete-icon-disabled{
+	color: #FF9F9F;
+}
+
+/*Profile Image Mergin Styles*/
+.person-image-wrapper {
+    display: inline-block;
+    position: absolute;
+}
+
+.person-image-wrapper label{
+    display: block;
+    position: absolute;
+    color: red;
+    font-size: 21px;
+    font-weight: bold;
+    top: 0px;
+    left: 0px;
+}
+
+.dragging-zone {
+    margin-top: 20px;
+}
+/* Image Viewer */
+.image-viewer {
+    margin-top: 20px;
+}
+
+/* Pdf Viewer*/
+.pdf-viewer {
+    border: 1px solid black;
+}

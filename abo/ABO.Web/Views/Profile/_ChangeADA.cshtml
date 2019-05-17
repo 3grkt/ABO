@@ -1,0 +1,22 @@
+﻿@model ProfileADAChangeModel
+@using ABO.Web.Models.Profiles
+
+@using (Html.BeginForm("Index", "Profile"))
+{
+    @Html.HiddenFor(m => m.Id)
+    <table class="table-form">
+        <tr>
+            <td class="col-left">@Html.LabelFor(m => m.DistNumber)</td>
+            <td class="col-right">@Html.DisplayFor(m => m.DistNumber)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.NewDistNumber)</td>
+            <td>@Html.EditorFor(m => m.NewDistNumber)</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-right">
+                <button type="submit" name="saveADAChange" value="saveADAChange" class="btn btn-primary">@T("Common.Save")</button>
+            </td>
+        </tr>
+    </table>
+}

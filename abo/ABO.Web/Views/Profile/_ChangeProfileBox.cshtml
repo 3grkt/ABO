@@ -1,0 +1,18 @@
+﻿@model ProfileBoxChangeModel
+@using ABO.Web.Models.Profiles
+
+@using (Html.BeginForm("Index", "Profile"))
+{
+    @Html.HiddenFor(m => m.Id)
+    <table class="table-form">
+        <tr>
+            <td class="col-left">@T("Profile.NewProfileBox")</td>
+            <td class="col-right">@Html.DropDownListFor(m => m.BoxId, Model.AvailableBoxes)</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-right">
+                <button type="submit" name="saveProfileBoxChange" value="saveProfileBoxChange" class="btn btn-primary">@T("Common.Save")</button>
+            </td>
+        </tr>
+    </table>
+}

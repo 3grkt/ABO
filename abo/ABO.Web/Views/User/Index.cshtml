@@ -1,0 +1,77 @@
+﻿@model ABO.Web.Models.User.UsersModel
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+
+@{
+    ViewBag.Title = T("PageTitle.User");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.User"), string.Empty);
+}
+@Html.Partial("_UserSearchForm", Model.Search)
+@using (Html.BeginForm())
+{
+    @Html.Grid(Model.Data).Sort(ViewBag.Sort as GridSortOptions).Columns(column =>
+    {
+        column.For(model => model.UserName)
+            .Named(T("User.Name"))
+            .SortColumnName("")
+            .Attributes(style => "width: 10%;");
+        column.For(model => model.UserFullName)
+            .Named(T("User.FullName"))
+            .SortColumnName("")
+            .Attributes(style => "width: 20%;");
+        column.For(model => model.WarehouseName)
+            .Named(T("User.Warehouse"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+        column.For(model => model.Role)
+            .Named(T("User.Role"))
+            .SortColumnName("")
+            .Attributes(style => "width: 15%;");
+
+        column.For(model => "<a href=\"javascript:edit(" + model.UserId + ")\" class=\"fa fa-edit\" title=\"" + T("Common.Edit") + "\"></a>" + "&nbsp;" +
+                            (("<a href=\"javascript:del(" + model.UserId + ")\" class=\"fa fa-trash delete-icon\" title=\"" + T("Common.Delete") + "\"></a>")))
+            .Attributes(style => "width: 5%;", @class => "fa-icon")
+            .Encode(false);
+
+
+    }).Empty(T("Common.Message.NoRecordFound"))
+    @Html.GetPager(Model.Pager)
+
+    <div class="buttons text-right">
+        <button type="button" id="loadForm" name="add" value="add" class="btn btn-primary" title="@T("User.Add")">
+            @T("User.Add")
+        </button>
+        <button type="submit" id="ExportToExcel" name="ExportToExcel" value="excel" class="btn btn-primary" title="@T("User.Excel")">
+            @T("User.Excel")
+        </button>
+
+    </div>
+}
+<div id="add_edit_form" style="display: none"></div>
+
+<script>
+    $(document).ready(function () {
+        $('#loadForm').click(function () {
+            $('#add_edit_form').load('@Url.Action("GetUserNewForm", "User", null, Request.Url.Scheme)');
+            $('#add_edit_form').fadeIn();
+        });
+
+
+    });
+    function edit(id) {
+        $('#add_edit_form').load('@Url.Action("GetUserEditForm", "User", null, Request.Url.Scheme)' + '?id=' + id);
+        $('#add_edit_form').fadeIn();
+    }
+
+    function del(id) {
+        if (confirm('@T("User.ConfirmDelete").ToJavascriptString()')) {
+            var $form = $('<form />', { action: '@Url.Action("Delete", "User", null, Request.Url.Scheme)' + "?id=" + id, method: 'POST' })
+            $form.submit();
+        }
+
+
+    }
+</script>

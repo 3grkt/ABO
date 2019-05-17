@@ -1,0 +1,111 @@
+﻿@model ABO.Web.Models.Distributors.NewLetterModel
+<fieldset class="fieldset">
+
+    <legend>@T("DistributorLetter.AddNew")</legend>
+
+    @using (@Html.BeginForm("ExportLetter", "Distributor", FormMethod.Post))
+    {
+        <div class="">
+            <div class="row">
+                <div class="form-group col-md-8">
+                    @Html.Label(T("DistributorLetter.NewDistributor"), new { @class = "col-md-3" })
+                    @Html.Label(@T("DistributorLetter.OldDistNum"), new { @class = "col-md-2" })
+
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.OldDistNumber, new { @id = "OldDistNo", @class = "form-control" })
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(m => m.OldDistName, new { @id = "OldDistName", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <div class="col-md-3"></div>
+                    @Html.Label(@T("DistributorLetter.NewDistNum"), new { @class = "col-md-2" })
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.DistNumber, new { @id = "DistNo", @class = "form-control" })
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(m => m.DistName, new { @id = "DistName", @class = "form-control" })
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1 col-md-offset-1">
+                        <button type="button" id="checking" class="btn btn-default">Kiểm Tra</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    @Html.Label(T("DistributorLetter.OldSponsor"), new { @class = "col-md-5" })
+                    @*<label for="inputEmail3" class="col-md-5">User ID</label>*@
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.SponsorNumber, new { @id = "SponNo", @class = "form-control" })
+                    </div>
+                    <div class="col-md-4 ">
+                        <input type="text" class="form-control" id="SponName" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1 col-md-offset-1">
+                        <button type="submit" class="btn btn-default" id="exportLetter" disabled="disabled">Xuất Thư</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    @Html.Label(T("DistributorLetter.OldPlatium"), new { @class = "col-md-5" })
+                    @*<label for="inputEmail3" class="col-md-5">User ID</label>*@
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.PlatiumNumber, new { @id = "PlaNo", @class = "form-control" })
+                    </div>
+                    <div class="col-md-4 ">
+                        <input type="text" class="form-control" id="PlaName" placeholder="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</fieldset>
+<script>
+    $(document).ready(function () {
+        $('#checking').click(function () {
+            VerifyData();
+        });
+    });
+
+    function VerifyData() {
+        var stringArray = new Array();
+        stringArray[0] = $('#OldDistNo').val();
+        stringArray[1] = $('#DistNo').val();
+        stringArray[2] = $('#SponNo').val();
+        stringArray[3] = $('#PlaNo').val();
+        var postData = { values: stringArray };
+
+        $.ajax({
+            type: "POST",
+            url: "/Distributor/VerifyData",
+            data: postData,
+            success: function (data) {
+                $('#OldDistName').val(data.OldDistName);
+                $('#DistName').val(data.DistName);
+                $('#SponName').val(data.SponsorName);
+                $('#PlaName').val(data.PlatiumName);
+                $('#exportLetter').removeAttr("disabled");
+            },
+            dataType: "json",
+            traditional: true,
+            error: function (data) {
+                alert(data.responseText);
+                $('#exportLetter').attr("disabled", "disabled");
+            }
+        });
+    }
+
+
+</script>

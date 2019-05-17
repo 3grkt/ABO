@@ -1,0 +1,435 @@
+﻿@model ABO.Web.Models.ProfileImageMerging.ProfileImageMergingIndexModel
+
+@{
+    ViewBag.Title = T("PageTitle.ProfileImageMerging");
+    var uploadAvatarWidth = ViewData["UploadAvatarWidth"] != null ? (int) ViewData["UploadAvatarWidth"] : 0;
+    var uploadAvatarHeight = ViewData["UploadAvatarHeight"] != null ? (int) ViewData["UploadAvatarHeight"] : 0;
+}
+
+@using (@Html.BeginForm("Submit", "ProfileImageMerging", FormMethod.Post, new { @id = "mergeImageForm" }))
+{
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.DistNumber, new { @class = "col-md-6" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.DistNumber, new { @class = "form-control", @id = "DistNumber", type = "number" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.UndersignedPoint, new {@class = "col-md-6"})
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.UndersignedPoint.X, new {@class = "form-control", @id = "firstPersonX", type = "number"})
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.UndersignedPoint.Y, new {@class = "form-control", @id = "firstPersonY", type = "number"})
+                </div>
+
+            </div>
+            <div class="form-group col-md-6">
+                <label class='col-md-4'>@T("ProfileImageMerging.Scale")</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.UndersignedPoint.Scale, new {@class = "form-control", @id = "firstPersonScale", type = "number", step = "0.01"})
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.SecondPersonPoint, new {@class = "col-md-6"})
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.SecondPersonPoint.X, new {@class = "form-control", @id = "secondPersonX", type = "number"})
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.SecondPersonPoint.Y, new {@class = "form-control", @id = "secondPersonY", type = "number"})
+                </div>
+
+            </div>
+            <div class="form-group col-md-6">
+                <label class='col-md-4'>@T("ProfileImageMerging.Scale")</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.SecondPersonPoint.Scale, new {@class = "form-control", @id = "secondPersonScale", type = "number", step = "0.01"})
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.ProfilePageIndex, new {@class = "col-md-6"})
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.ProfilePageIndex, new {@class = "form-control", @id = "ProfilePageIndex", type = "number"})
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.SupressWarning, new {@id = "SupressWarning"})
+    </div>
+
+    <div class="form-group">
+        <button type="button" id="loadProfile" class="btn btn-primary">@T("ProfileImageMerging.LoadProfileButton")</button>
+        <button type="button" id="loadImage" class="btn btn-primary">@T("ProfileImageMerging.LoadImageButton")</button>
+        <button type="button" id="loadLocalImage" class="btn btn-primary">@T("ProfileImageMerging.LoadLocalImageButton")</button>
+        <button type="submit" value="search" id="mergeImageButton" class="btn btn-primary">@T("Common.Execute")</button>    
+    </div>
+    
+}
+
+<form id="imageUploadForm" style="display: none">
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div class="row">
+                <label class="col-md-3">@T("ProfileImageMerging.FirstPersonUploadImage")</label>
+                <div class="col-md-5">
+                    <input type="file" id="inputImage1" class="form-control" style="display: none" />
+                </div>    
+            </div>
+
+            <div class="row">
+                <label class="col-md-3">@T("ProfileImageMerging.SecondPersonUploadImage")</label>
+                <div class="col-md-5">
+                    <input type="file" id="inputImage2" class="form-control" style="display: none" />
+                </div>    
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <button type="button" id="uploadImage" class="btn btn-primary">@T("ProfileImageMerging.UploadImageButton")</button>                    
+                </div>
+            </div>            
+        </div>    
+    </div>
+</form>
+
+
+<div id="imageViewer" class="image-viewer">
+</div>
+<canvas id="pdfViewer" class="pdf-viewer"></canvas>
+
+
+
+@Styles.Render("~/Content/jqueryui")
+@Styles.Render("~/Content/alertify")
+
+<style type="text/css">
+    #firstPersonLocalImage,
+    #secondPersonLocalImage {
+        width: @{@Html.Raw(uploadAvatarWidth)}px;
+        height: @{@Html.Raw(uploadAvatarHeight)}px;
+    }
+</style>
+
+@Scripts.Render("~/Scripts/alertify")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/Scripts/pdf.js")
+@Scripts.Render("~/Scripts/pdf.worker.js")
+@Scripts.Render("~/Scripts/encoding")
+
+@section Scripts{
+    <script type="text/javascript">
+        (function (imageMerging) {
+            var currentProfileId = "";
+
+            var showLocalImageInputs = function() {
+                var distNumber = $('#DistNumber').val();
+                if (!distNumber) {
+                    alertify.error('@T("ProfileImageMerging.MissingProfileId")');
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetDistIdsPerAdaNo")',
+                    type: 'POST',
+                    data: { adaNo: $('#DistNumber').val() },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#imageViewer').empty();
+                        $('#imageUploadForm').show();
+
+                        if (data.Id1) {
+                            $('#inputImage1').show();
+                        }
+
+                        if (data.Id2) {
+                            $('#inputImage2').show();
+                        }
+                    },
+                    error: function (data) {
+                        var jsonData = JSON.parse(data.responseText);
+                        jsonData.ErrorMessage && alertify.error(jsonData.ErrorMessage);
+                        $('#imageUploadForm').hide();
+                    }
+                });
+            }
+
+            var uploadImage = function() {
+                var file = $('#inputImage1')[0].files[0];
+                var file2 = $('#inputImage2')[0].files[0];
+
+                if (!file && !file2) {
+                    alertify.error("@T("ProfileImageMerging.UploadImage.NoFile")");
+                    return;
+                }
+
+                var formData = new FormData();
+                formData.append("adaNo", $('#DistNumber').val());
+                formData.append("file1", file);
+                formData.append("file2", file2);
+
+                $.ajax({
+                    url: '@Url.Action("UploadImage")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function() {
+                        alertify.success("@T("ProfileImageMerging.UploadImageSuccessMessage")");
+                    },
+                    error: function(data) {
+                        var jsonData = JSON.parse(data.responseText);
+                        jsonData.ErrorMessage && alertify.error(jsonData.ErrorMessage);
+                    }
+                });
+            }
+
+            var mergeImage = function(e) {
+                e.preventDefault();
+
+                var totalImages = 0;
+                totalImages += $('#firstPersonImageNotFound').length;
+                totalImages += $('#secondPersonImageNotFound').length;
+
+                if (totalImages === 1) {
+                    alertify.confirm('@T("ProfileImageMerging.ConfirmModal")', '@T("ProfileImageMerging.NotEnoughImage")',
+                        function () {
+                            $('#mergeImageForm').submit();
+                        },
+                        function () {
+                            alertify.success('@T("ProfileImageMerging.Cancel")');
+                        });
+                } else {
+                    $('#mergeImageForm').submit();
+                }
+            }
+
+            var loadImage = function() {
+                $('#imageUploadForm').hide();
+                $.post('@Url.Action("LoadProspectAvatar")', 'adaNo=' + $('#DistNumber').val(), function (data) {
+                    if (!data.replace(/\s/g, '').length) {
+                        alertify.error('@T("ProfileImageMerging.MissingProfileImage")');
+                        return;
+                    }
+                    var imageViewer = $('#imageViewer');
+                    imageViewer.html(data);
+
+                    var firstPersonToken = 'firstPerson';
+                    bindUIControls(firstPersonToken, {
+                        $inputOffsetX: $('#' + firstPersonToken + 'X'),
+                        $inputOffsetY: $('#' + firstPersonToken + 'Y'),
+                        $inputScale: $('#' + firstPersonToken + 'Scale')
+
+                    });
+
+                    var secondPersonToken = 'secondPerson';
+                    bindUIControls(secondPersonToken, {
+                        $inputOffsetX: $('#' + secondPersonToken + 'X'),
+                        $inputOffsetY: $('#' + secondPersonToken + 'Y'),
+                        $inputScale: $('#' + secondPersonToken + 'Scale')
+                    });
+                });
+            }
+
+           var loadProfile = function(e) {
+               var xhr = new XMLHttpRequest();
+               xhr.open('POST', '/ProfileImageMerging/LoadProfile', true);
+               xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+               xhr.responseType = 'arraybuffer';
+
+               xhr.onload = function (e) {
+                   if (e.currentTarget.status !== 200) {
+                       var decoder = new TextDecoder();
+                       var returnObj = JSON.parse(decoder.decode(this.response));
+                       returnObj.ErrorMessage && alertify.error(returnObj.ErrorMessage);
+                   }
+                   // response is unsigned 8 bit integer
+                   var responseArray = new Uint8Array(this.response);
+
+                   PDFJS.getDocument(responseArray).then(function (pdf) {
+                       // Using promise to fetch the page
+                       pdf.getPage(parseInt($('#ProfilePageIndex').val())).then(function (page) {
+                           var scale = 1;
+                           var viewport = page.getViewport(scale);
+
+                           //
+                           // Prepare canvas using PDF page dimensions
+                           //
+                           var canvas = document.getElementById('pdfViewer');
+                           var context = canvas.getContext('2d');
+                           canvas.height = viewport.height;
+                           canvas.width = viewport.width;
+
+                           //
+                           // Render PDF page into canvas context
+                           //
+                           var renderContext = {
+                               canvasContext: context,
+                               viewport: viewport
+                           };
+                           page.render(renderContext);
+                       });
+                   });
+               };
+
+               xhr.send("adaNo=" + $('#DistNumber').val());
+           }
+
+            function createLocalImageContainer(prefix, label) {
+                return $('<div id="' + prefix + 'LocalWrapper" class="person-image-wrapper">' +
+                    '<img id="' + prefix + 'LocalImage"/>' +
+                    '<label>' + label + '</label>' +
+                    '</div>');
+            }
+
+            function loadLocalImage(input, prefix, label) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imageViewer').append(createLocalImageContainer(prefix, label));
+
+                        $('#' + prefix + 'LocalWrapper').show();
+                        $('#' + prefix + 'LocalImage').attr('src', e.target.result);
+                        bindUIControls(prefix + 'Local', {
+                            $inputOffsetX: $('#' + prefix + 'X'),
+                            $inputOffsetY: $('#' + prefix + 'Y'),
+                            $inputScale: $('#' + prefix + 'Scale')
+                        });
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    $('#' + prefix + 'Wrapper').hide();
+                }
+            }
+
+            function bindUIControls(prefixId, inputs) {
+                var imageViewer = $('#imageViewer');
+
+                var wrapper = imageViewer.find('#' + prefixId + 'Wrapper');
+
+                if (wrapper.length === 0) {
+                    return;
+                }
+
+                var image = imageViewer.find('#' + prefixId + 'Image');
+                var interval = setInterval(function () {
+                    if (image.outerWidth() !== 0) {
+                        enableImageResize(image, inputs.$inputScale);
+                        enableElemDraggable(wrapper, inputs.$inputOffsetX, inputs.$inputOffsetY);
+                        clearInterval(interval);
+                    }
+                }, 300);
+            }
+
+            function enableImageResize($elem, $inputScale) {
+                $elem.resizable({
+                    aspectRatio: true,
+                    stop: function (event, ui) {
+                        var scale = ui.size.width / ui.originalElement.prop('naturalWidth');
+                        $inputScale.val(scale);
+                    },
+                    create: function () {
+                        var $this = $(this);
+                        var scale = parseFloat($inputScale.val()) || 0.3;
+                        var width = $this.outerWidth() * scale;
+                        var height = $this.outerHeight() * scale;
+
+                        $this.css('width', width);
+                        $this.css('height', height);
+
+                        $elem.css('width', width);
+                        $elem.css('height', height);
+                    }
+                });
+            }
+
+            function enableElemDraggable($elem, $inputOffsetX, $inputOffsetY) {
+                $elem.draggable({
+                    containment: '#pdfViewer',
+                    stop: function () {
+                        var $this = $(this);
+                        var thisPos = $this.position();
+                        var parentPos = $('#pdfViewer').position();
+
+                        var x = thisPos.left - parentPos.left;
+                        var y = thisPos.top - parentPos.top;
+
+                        $inputOffsetX && $inputOffsetX.val(x);
+                        $inputOffsetY && $inputOffsetY.val(y);
+                    }
+                });
+            }
+
+            var cleanFields = function () {
+                // Reset loaded images
+                $('#imageViewer').empty();
+                $('#imageUploadForm').get(0).reset();
+
+                var pdfViewer = document.getElementById("pdfViewer");
+                if (pdfViewer) {
+                    var pdfCanvasContext = pdfViewer.getContext("2d");
+                    var canvas = pdfCanvasContext.canvas;
+                    canvas.width = 300;
+                    canvas.height = 150;
+                    pdfCanvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            var onFuncCalled = function () {
+                var profileId = $("#DistNumber").val();
+
+                if (profileId !== currentProfileId) {
+                    cleanFields();
+                    currentProfileId = profileId;
+                }
+
+                aboUtils.hideErrorMessages();
+            }
+
+            var bindActionToFuncCall = function () {
+                showLocalImageInputs = aboUtils.actionTrigger(showLocalImageInputs, onFuncCalled);
+                mergeImage = aboUtils.actionTrigger(mergeImage, onFuncCalled);
+                loadImage = aboUtils.actionTrigger(loadImage, onFuncCalled);
+                loadProfile = aboUtils.actionTrigger(loadProfile, onFuncCalled);
+            }
+
+            var bindEventToInputs = function () {
+                $('#loadLocalImage').click(showLocalImageInputs);
+                $('#uploadImage').click(uploadImage);
+                $('#mergeImageButton').click(mergeImage);
+                $('#loadImage').click(loadImage);
+                $('#loadProfile').click(loadProfile);
+            }
+
+            imageMerging.init = function () {
+                bindActionToFuncCall();
+                bindEventToInputs();
+
+                $(document).ready(function () {
+                    $('#imageUploadForm').hide();
+
+                    $('#inputImage1').change(function () {
+                        loadLocalImage(this, 'firstPerson', '1st');
+                    });
+
+                    $('#inputImage2').change(function () {
+                        loadLocalImage(this, 'secondPerson', '2nd');
+                    });
+                });
+            }
+        })(window.abo.imageMerging = window.abo.imageMerging || {});
+
+        window.abo.imageMerging.init();
+    </script>
+}

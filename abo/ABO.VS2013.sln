@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABO.Web", "ABO.Web\ABO.Web.csproj", "{C97F0D8F-95FD-448B-AABA-9F2BB88DD0E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABO.Core", "ABO.Core\ABO.Core.csproj", "{07576FFF-91D3-440D-99EB-A0AB3F1AD2BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABO.Data", "ABO.Data\ABO.Data.csproj", "{7FB20E17-369F-4E91-8699-26B1CFABF838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABO.Services", "ABO.Services\ABO.Services.csproj", "{74891A5D-A407-4AF9-A541-C58E9EFDB19C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{304AD43C-8DD9-4908-B914-A06B391818C7}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABO.Tests", "ABO.Tests\ABO.Tests.csproj", "{F8CC9DBA-D887-46FE-8348-864566E5792E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABO.Jobs", "ABO.Jobs\ABO.Jobs.csproj", "{A2313503-E5B8-4260-B809-51E1E7997B5D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://codesync4tri.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ABO.Core\\ABO.Core.csproj
+		SccProjectName1 = ABO.Core
+		SccLocalPath1 = ABO.Core
+		SccProjectUniqueName2 = ABO.Data\\ABO.Data.csproj
+		SccProjectName2 = ABO.Data
+		SccLocalPath2 = ABO.Data
+		SccProjectUniqueName3 = ABO.Services\\ABO.Services.csproj
+		SccProjectName3 = ABO.Services
+		SccLocalPath3 = ABO.Services
+		SccProjectUniqueName4 = ABO.Web\\ABO.Web.csproj
+		SccProjectName4 = ABO.Web
+		SccLocalPath4 = ABO.Web
+		SccProjectUniqueName5 = ABO.Tests\\ABO.Tests.csproj
+		SccProjectName5 = ABO.Tests
+		SccLocalPath5 = ABO.Tests
+		SccProjectUniqueName6 = ABO.Jobs\\ABO.Jobs.csproj
+		SccProjectName6 = ABO.Jobs
+		SccLocalPath6 = ABO.Jobs
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C97F0D8F-95FD-448B-AABA-9F2BB88DD0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97F0D8F-95FD-448B-AABA-9F2BB88DD0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97F0D8F-95FD-448B-AABA-9F2BB88DD0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97F0D8F-95FD-448B-AABA-9F2BB88DD0E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07576FFF-91D3-440D-99EB-A0AB3F1AD2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07576FFF-91D3-440D-99EB-A0AB3F1AD2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07576FFF-91D3-440D-99EB-A0AB3F1AD2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07576FFF-91D3-440D-99EB-A0AB3F1AD2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB20E17-369F-4E91-8699-26B1CFABF838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB20E17-369F-4E91-8699-26B1CFABF838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB20E17-369F-4E91-8699-26B1CFABF838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB20E17-369F-4E91-8699-26B1CFABF838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74891A5D-A407-4AF9-A541-C58E9EFDB19C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74891A5D-A407-4AF9-A541-C58E9EFDB19C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74891A5D-A407-4AF9-A541-C58E9EFDB19C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74891A5D-A407-4AF9-A541-C58E9EFDB19C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8CC9DBA-D887-46FE-8348-864566E5792E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CC9DBA-D887-46FE-8348-864566E5792E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CC9DBA-D887-46FE-8348-864566E5792E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CC9DBA-D887-46FE-8348-864566E5792E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2313503-E5B8-4260-B809-51E1E7997B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2313503-E5B8-4260-B809-51E1E7997B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2313503-E5B8-4260-B809-51E1E7997B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2313503-E5B8-4260-B809-51E1E7997B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

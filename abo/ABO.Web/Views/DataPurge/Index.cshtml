@@ -1,0 +1,108 @@
+﻿@model DataPurgeIndexModel
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+@using ABO.Core
+@using ABO.Core.Infrastructure
+@using ABO.Web.Helpers
+@using ABO.Web.Models.DataPurges;
+
+@{
+    ViewBag.Title = @T("PageTitle.DataPurge");
+    ViewBag.Breadcrumb = new ABO.Web.Models.Common.PageBreadcrumb(T("PageTitle.DataPurge"), string.Empty);
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.Grid(Model.Purges).Sort(ViewBag.Sort as GridSortOptions).Columns(column =>
+        {
+            column.For(model => Html.GetDateString(model.PurgeDate))
+                .Named(T("DataPurge.Grid.PurgeDate"))
+                .SortColumnName("PurgeDate")
+                .Attributes(style => "width: 15%;");
+            column.For(model => Html.GetDateString(model.StartDate))
+                .Named(T("DataPurge.Grid.StartDate"))
+                .SortColumnName("StartDate")
+                .Attributes(style => "width: 35%;");
+            column.For(model => Html.GetDateString(model.EndDate))
+                .Named(T("DataPurge.Grid.EndDate"))
+                .SortColumnName("EndDate")
+                .Attributes(style => "width: 15%;");
+            column.For(model => model.FileCount.HasValue ? Html.GetFormattedNumber(model.FileCount) : "---")
+                .Named(T("DataPurge.Grid.FileCount"))
+                .SortColumnName("FileCount")
+                .Attributes(style => "width: 15%;");
+            column.For(model => model.UserName)
+                .Named(T("DataPurge.Grid.UserName"))
+                .SortColumnName("Result")
+                .Attributes(style => "width: 10%;");
+            column.For(model => string.Format("<a href='javascript:deletePurge({0});' title='{1}'><i class='fa fa-trash delete-icon'></i></a>", model.Id, T("Common.Delete")))
+                .Sortable(false)
+                .Attributes(style => "width: 5%;")
+                .Encode(false);
+        }).Empty(T("Common.Message.NoRecordFound"))
+
+        @Html.GetPager(Model.Pager)
+    </div>
+</div>
+
+<fieldset class="fieldset">
+    <legend>@T("DataPurge.RegisterDataPurge")</legend>
+
+    @using (Html.BeginForm("Index", "DataPurge", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.RegisteredModel.PurgeDate, new { @class = "col-md-4" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(m => m.RegisteredModel.PurgeDate)
+                    </div>
+                </div>
+                @*</div>
+            <div class="row">*@
+                <div class="form-group">
+                    @Html.LabelFor(m => m.RegisteredModel.StartDate, new { @class = "col-md-4" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(m => m.RegisteredModel.StartDate)
+                    </div>
+                </div>
+                @*</div>
+            <div class="row">*@
+                <div class="form-group">
+                    @Html.LabelFor(m => m.RegisteredModel.EndDate, new { @class = "col-md-4" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(m => m.RegisteredModel.EndDate)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" name="register" value="register" class="btn btn-primary">
+                            <i class="fa fa-save"></i>
+                            @T("DataPurge.Register")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</fieldset>
+
+@section scripts{
+    <script type="text/javascript">
+        var deletePurge = function (id) {
+            if (confirm('@T("DataPurge.ConfirmDeletePurge")')) {
+                $.post('@Url.Action("Delete", "DataPurge")', { id: id }, function (data) {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                });
+            }
+        }
+    </script>
+}

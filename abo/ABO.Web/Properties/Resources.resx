@@ -1,0 +1,981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common.All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="Common.AppFullName" xml:space="preserve">
+    <value>ABO</value>
+  </data>
+  <data name="Common.AppName" xml:space="preserve">
+    <value>ABO</value>
+  </data>
+  <data name="Common.Begin" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
+  <data name="Common.Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Common.Copyright" xml:space="preserve">
+    <value>© 2014 - Bản quyền thuộc về ABO</value>
+  </data>
+  <data name="Common.Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Common.Edit" xml:space="preserve">
+    <value>Sửa</value>
+  </data>
+  <data name="Common.Hello" xml:space="preserve">
+    <value>Xin chào</value>
+  </data>
+  <data name="Common.Import" xml:space="preserve">
+    <value>Nhập vào</value>
+  </data>
+  <data name="Common.Message.NoRecordFound" xml:space="preserve">
+    <value>Không tìm thấy dữ liệu.</value>
+  </data>
+  <data name="Common.Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="Common.Page.Display" xml:space="preserve">
+    <value>Hiển thị</value>
+  </data>
+  <data name="Common.Page.First" xml:space="preserve">
+    <value>Trang đầu</value>
+  </data>
+  <data name="Common.Page.FoundRecords" xml:space="preserve">
+    <value>{0} kết quả</value>
+  </data>
+  <data name="Common.Page.Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Common.Page.Go.Hint" xml:space="preserve">
+    <value>Chuyển trang</value>
+  </data>
+  <data name="Common.Page.Last" xml:space="preserve">
+    <value>Trang cuối</value>
+  </data>
+  <data name="Common.Page.Next" xml:space="preserve">
+    <value>Trang sau</value>
+  </data>
+  <data name="Common.Page.Previous" xml:space="preserve">
+    <value>Trang trước</value>
+  </data>
+  <data name="Common.ResetSearch" xml:space="preserve">
+    <value>Hủy KQ</value>
+  </data>
+  <data name="Common.ResetSearch.Hint" xml:space="preserve">
+    <value>Hủy kết quả đã tìm</value>
+  </data>
+  <data name="Common.Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Common.Search" xml:space="preserve">
+    <value>Tìm</value>
+  </data>
+  <data name="Common.Validation.StringMaxLength" xml:space="preserve">
+    <value>{0} không được quá {1} ký tự.</value>
+  </data>
+  <data name="Enums.AssetStatus.Deleted" xml:space="preserve">
+    <value>Đã xóa</value>
+  </data>
+  <data name="Enums.AssetStatus.Expired" xml:space="preserve">
+    <value>Hết sử dụng</value>
+  </data>
+  <data name="Enums.AssetStatus.InUsed" xml:space="preserve">
+    <value>Đang sử dụng</value>
+  </data>
+  <data name="Enums.AssetStatus.InUsedFault" xml:space="preserve">
+    <value>Đang sử dụng (có lỗi)</value>
+  </data>
+  <data name="Enums.AssetStatus.New" xml:space="preserve">
+    <value>Mới phát hiện</value>
+  </data>
+  <data name="Enums.AssetStatus.NotFound" xml:space="preserve">
+    <value>Không tìm thấy</value>
+  </data>
+  <data name="Enums.InventoryDetailStatus.Invalidated" xml:space="preserve">
+    <value>Chưa kiểm tra</value>
+  </data>
+  <data name="Enums.InventoryDetailStatus.Moved" xml:space="preserve">
+    <value>Chuyển từ nơi khác đến</value>
+  </data>
+  <data name="Enums.InventoryDetailStatus.New" xml:space="preserve">
+    <value>Mới phát hiện</value>
+  </data>
+  <data name="Enums.InventoryDetailStatus.Validated" xml:space="preserve">
+    <value>Đã kiểm tra</value>
+  </data>
+  <data name="Enums.InventoryStatus.Completed" xml:space="preserve">
+    <value>Hoàn Tất</value>
+  </data>
+  <data name="Enums.InventoryStatus.InProgress" xml:space="preserve">
+    <value>Đang Tiến Hành</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.Discardable" xml:space="preserve">
+    <value>Có thể hủy</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.Discarded" xml:space="preserve">
+    <value>Đã hủy</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.Moved" xml:space="preserve">
+    <value>Đã chuyển đi</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.NeedToDiscard" xml:space="preserve">
+    <value>Cần hủy</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.Open" xml:space="preserve">
+    <value>Đang Mở</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.Packed" xml:space="preserve">
+    <value>Đã đóng gói</value>
+  </data>
+  <data name="Enums.ProfileBoxStatus.Stored" xml:space="preserve">
+    <value>Lưu Kho</value>
+  </data>
+  <data name="Error.Forbidden.Description" xml:space="preserve">
+    <value>Bạn không có quyền truy cập trang này!</value>
+  </data>
+  <data name="Error.Forbidden.PageTitle" xml:space="preserve">
+    <value>Không có quyền</value>
+  </data>
+  <data name="Error.NotFound.Description" xml:space="preserve">
+    <value>Trang web không tồn tại. Vui lòng thử lại đường dẫn khác!</value>
+  </data>
+  <data name="Error.NotFound.PageTitle" xml:space="preserve">
+    <value>Không tìm thấy</value>
+  </data>
+  <data name="Error.ServerError.Description" xml:space="preserve">
+    <value>Đã có lỗi xảy ra trong hệ thống. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Error.ServerError.PageTitle" xml:space="preserve">
+    <value>Lỗi hệ thống</value>
+  </data>
+  <data name="Home.Guidelines" xml:space="preserve">
+    <value>Chọn 1 link từ menu bên trên để bắt đầu sử dụng các năng trong hệ thống.</value>
+  </data>
+  <data name="Inventory.AssetRecord.Individual.Failed" xml:space="preserve">
+    <value>Lưu tài sản mới không thành công. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Inventory.AssetRecord.Individual.Success" xml:space="preserve">
+    <value>Tài sản mới đã được lưu thành công.</value>
+  </data>
+  <data name="Inventory.AssetRecord.List.FailedToImport" xml:space="preserve">
+    <value>Đã có lỗi xảy ra trong quá trình nhập file. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Inventory.AssetRecord.List.InvalidFile" xml:space="preserve">
+    <value>File đã chọn không hợp lệ.</value>
+  </data>
+  <data name="Inventory.AssetRecord.List.NotFoundAssetWarning" xml:space="preserve">
+    <value>CHÚ Ý: Những tài sản có mã sau đây không tìm thấy trong hệ thống: {0}.</value>
+  </data>
+  <data name="Inventory.AssetRecord.List.SelectFile" xml:space="preserve">
+    <value>File "Danh sách đã kiểm" chưa được chọn.</value>
+  </data>
+  <data name="Inventory.AssetRecord.List.SuccessToImport" xml:space="preserve">
+    <value>Danh sách đã được nhập thành công.</value>
+  </data>
+  <data name="Inventory.Checker" xml:space="preserve">
+    <value>Người kiểm kê</value>
+  </data>
+  <data name="Menu.DataPurge" xml:space="preserve">
+    <value>Xóa dữ liệu</value>
+  </data>
+  <data name="Menu.Distributor" xml:space="preserve">
+    <value>Nhà phân phối</value>
+  </data>
+  <data name="Menu.Home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="Menu.NotScannedDistributor" xml:space="preserve">
+    <value>NPP chưa được scan</value>
+  </data>
+  <data name="Menu.PrintLetter" xml:space="preserve">
+    <value>In thư tái gia nhập</value>
+  </data>
+  <data name="Menu.Profile" xml:space="preserve">
+    <value>Hồ sơ của NPP</value>
+  </data>
+  <data name="Menu.ProfileBox" xml:space="preserve">
+    <value>Thùng hồ sơ</value>
+  </data>
+  <data name="Menu.ProfileGroup" xml:space="preserve">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="Menu.ProfileScan" xml:space="preserve">
+    <value>Kết quả xử lý hàng ngày</value>
+  </data>
+  <data name="Menu.ProfileType" xml:space="preserve">
+    <value>Loại hồ sơ</value>
+  </data>
+  <data name="Menu.User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="PageTitle.AssetDetails" xml:space="preserve">
+    <value>Chi tiết tài sản</value>
+  </data>
+  <data name="PageTitle.CloseInventory" xml:space="preserve">
+    <value>Đóng đợt kiểm kê</value>
+  </data>
+  <data name="PageTitle.Home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="PageTitle.Inventory" xml:space="preserve">
+    <value>Kiểm kê</value>
+  </data>
+  <data name="PageTitle.InventoryDetails" xml:space="preserve">
+    <value>Chi tiết đợt kiểm kê</value>
+  </data>
+  <data name="PageTitle.ListOfInventory" xml:space="preserve">
+    <value>Danh sách đợt kiểm kê</value>
+  </data>
+  <data name="PageTitle.OpenInventory" xml:space="preserve">
+    <value>Mở đợt kiểm kê</value>
+  </data>
+  <data name="PageTitle.Profile" xml:space="preserve">
+    <value>HS của từng NPP</value>
+  </data>
+  <data name="PageTitle.ProfileType" xml:space="preserve">
+    <value>Danh sách loại HS</value>
+  </data>
+  <data name="PageTitle.RecordAssets" xml:space="preserve">
+    <value>Ghi nhận tài sản</value>
+  </data>
+  <data name="ProfileBox.AdaCount" xml:space="preserve">
+    <value>SL ADA</value>
+  </data>
+  <data name="ProfileBox.BoxStatus" xml:space="preserve">
+    <value>Trạng thái thùng</value>
+  </data>
+  <data name="ProfileBox.BoxStatus2" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Profile.Distributor.Address" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="Profile.Distributor.ExpiryDate" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
+  <data name="Profile.Distributor.JoinDate" xml:space="preserve">
+    <value>Ngày gia nhập</value>
+  </data>
+  <data name="Profile.Distributor.Name" xml:space="preserve">
+    <value>Tên NPP</value>
+  </data>
+  <data name="Profile.Distributor.Warehouse" xml:space="preserve">
+    <value>Kho</value>
+  </data>
+  <data name="Profile.Name" xml:space="preserve">
+    <value>Mã số NPP</value>
+  </data>
+  <data name="Profile.ProfileBox.BoxName" xml:space="preserve">
+    <value>Thùng HS</value>
+  </data>
+  <data name="ProfileBox.Creator" xml:space="preserve">
+    <value>Người tạo thùng</value>
+  </data>
+  <data name="Profile.ProfileBox.UpdateADA" xml:space="preserve">
+    <value>Thay đổi ADA</value>
+  </data>
+  <data name="Profile.ProfileBox.CreatedByUserName" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="Profile.ProfileBox.CreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="Profile.ProfileBox.DeleteSelectedFile" xml:space="preserve">
+    <value>Xóa file được chọn</value>
+  </data>
+  <data name="ProfileBox.Name" xml:space="preserve">
+    <value>Tên thùng</value>
+  </data>
+  <data name="ProfileBox.OfficeName" xml:space="preserve">
+    <value>Chi Nhánh</value>
+  </data>
+  <data name="Profile.ProfileBox.Description" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="Profile.ProfileBox.ExportAllToPdf" xml:space="preserve">
+    <value>Xuất toàn bộ ra PDF</value>
+  </data>
+  <data name="Profile.ProfileBox.StatusName" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Profile.ProfileBox.TypeName" xml:space="preserve">
+    <value>Loại HS</value>
+  </data>
+  <data name="ProfileBox.UpdatedDate" xml:space="preserve">
+    <value>Ngày cập nhật</value>
+  </data>
+  <data name="Profile.ProfileBox.UpdateBox" xml:space="preserve">
+    <value>Thay đổi thùng HS</value>
+  </data>
+  <data name="ProfileBox.UserID" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="ProfileBox.WareHouse" xml:space="preserve">
+    <value>Kho</value>
+  </data>
+  <data name="ProfileBox.WareHouse2" xml:space="preserve">
+    <value>Lưu Kho</value>
+  </data>
+  <data name="Profile.ProfileBox.WarehouseName" xml:space="preserve">
+    <value>Warehouse ID</value>
+  </data>
+  <data name="Profile.YourUnboxedList" xml:space="preserve">
+    <value>Danh sách hồ sơ của bạn</value>
+  </data>
+  <data name="ProfileType.Add" xml:space="preserve">
+    <value>Thêm loại HS</value>
+  </data>
+  <data name="ProfileType.AddNewProfileType" xml:space="preserve">
+    <value>Thêm loại HS mới</value>
+  </data>
+  <data name="ProfileType.CannotDeleteSystemType" xml:space="preserve">
+    <value>Không thể xóa loại HS của hệ thống!</value>
+  </data>
+  <data name="ProfileType.ConfirmDelete" xml:space="preserve">
+    <value>Bạn có thật sự muốn xóa loại HS này không?</value>
+  </data>
+  <data name="ProfileType.Description" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="ProfileType.EditProfileType" xml:space="preserve">
+    <value>Chỉnh sửa loại HS</value>
+  </data>
+  <data name="ProfileType.FailedToDelete" xml:space="preserve">
+    <value>Đã có lỗi khi xóa loại HS. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="ProfileType.FailedToSave" xml:space="preserve">
+    <value>Đã có lỗi khi lưu loại HS. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="ProfileType.Image" xml:space="preserve">
+    <value>Loại hình ảnh</value>
+  </data>
+  <data name="ProfileType.Name" xml:space="preserve">
+    <value>Tên loại HS</value>
+  </data>
+  <data name="ProfileType.Scanned" xml:space="preserve">
+    <value>Cần scan</value>
+  </data>
+  <data name="ProfileType.StoredYears" xml:space="preserve">
+    <value>Số năm cần lưu</value>
+  </data>
+  <data name="Users.Password" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="User.Role" xml:space="preserve">
+    <value>Quyền</value>
+  </data>
+  <data name="Users.Title" xml:space="preserve">
+    <value>Chức vụ</value>
+  </data>
+  <data name="Users.UserName" xml:space="preserve">
+    <value>Tên người dùng</value>
+  </data>
+  <data name="ProfileBox.CreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="ProfileBox.ProfileType" xml:space="preserve">
+    <value>Loại HS</value>
+  </data>
+  <data name="Profile.ConfirmDeleteProfiles" xml:space="preserve">
+    <value>Bạn có thật sự muốn xóa file?</value>
+  </data>
+  <data name="Profile.FailedToDeleteProfiles" xml:space="preserve">
+    <value>Đã có lỗi khi xóa file. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.SuccessToDeleteProfiles" xml:space="preserve">
+    <value>File được chọn đã bị xóa.</value>
+  </data>
+  <data name="Distributor.NotScanned.DistName" xml:space="preserve">
+    <value>Tên NPP</value>
+  </data>
+  <data name="Distributor.NotScanned.DistNumber" xml:space="preserve">
+    <value>NPP</value>
+  </data>
+  <data name="Distributor.NotScanned.ExpiryDate" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
+  <data name="Distributor.NotScanned.ExportToExcel" xml:space="preserve">
+    <value>Xuất ra Excel</value>
+  </data>
+  <data name="Distributor.NotScanned.JoinDate" xml:space="preserve">
+    <value>Ngày gia nhập</value>
+  </data>
+  <data name="Distributor.NotScanned.UpdatedDate" xml:space="preserve">
+    <value>Ngày thay đổi</value>
+  </data>
+  <data name="Distributor.NotScanned.UpdatedType" xml:space="preserve">
+    <value>Thay đổi</value>
+  </data>
+  <data name="PageTitle.NotScannedDistributorUpdates" xml:space="preserve">
+    <value>NPP có thay đổi nhưng chưa có thông tin trên hệ thống</value>
+  </data>
+  <data name="DistributorLetter.LetterDate" xml:space="preserve">
+    <value>Ngày xuất thư</value>
+  </data>
+  <data name="DistributorLetter.NewDistributor" xml:space="preserve">
+    <value>Nhà phân phối mới</value>
+  </data>
+  <data name="Profile.ChangeADA.NewADANotFound" xml:space="preserve">
+    <value>Số ADA mới không tồn tại trong hệ thống!</value>
+  </data>
+  <data name="Profile.ChangeADA.Title" xml:space="preserve">
+    <value>Thay đổi ADA</value>
+  </data>
+  <data name="Profile.ChangeProfileBox.Title" xml:space="preserve">
+    <value>Thay đổi thùng HS</value>
+  </data>
+  <data name="Profile.CurrentADA" xml:space="preserve">
+    <value>Số ADA hiện tại</value>
+  </data>
+  <data name="Profile.FailedToChangeADA" xml:space="preserve">
+    <value>Đã có lỗi khi thay đổi ADA. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.FailedToExportPDFs" xml:space="preserve">
+    <value>Đã có lỗi khi xuất file PDF. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.NewADA" xml:space="preserve">
+    <value>Số ADA mới</value>
+  </data>
+  <data name="Profile.NewProfileBox" xml:space="preserve">
+    <value>Thùng HS mới</value>
+  </data>
+  <data name="Profile.SuccessToChangeADA" xml:space="preserve">
+    <value>Thay đổi ADA thành công!</value>
+  </data>
+  <data name="PageTitle.DailyScanResult" xml:space="preserve">
+    <value>Kết quả xử lý hàng ngày</value>
+  </data>
+  <data name="ProfileScan.BoxName" xml:space="preserve">
+    <value>Tên thùng</value>
+  </data>
+  <data name="ProfileScan.Description" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="ProfileScan.FileCount" xml:space="preserve">
+    <value>Số lượng file</value>
+  </data>
+  <data name="ProfileScan.Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="ProfileScan.Result" xml:space="preserve">
+    <value>Kết quả</value>
+  </data>
+  <data name="ProfileScan.ScannedDate" xml:space="preserve">
+    <value>Ngày xử lý</value>
+  </data>
+  <data name="ProfileScan.Search.Result" xml:space="preserve">
+    <value>Kết quả</value>
+  </data>
+  <data name="ProfileScan.Search.ScannedDate" xml:space="preserve">
+    <value>Ngày xử lý</value>
+  </data>
+  <data name="ProfileScan.Search.WarehouseId" xml:space="preserve">
+    <value>Kho</value>
+  </data>
+  <data name="Common.StartDate" xml:space="preserve">
+    <value>StartDate</value>
+  </data>
+  <data name="NewLetter.Address" xml:space="preserve">
+    <value>Đ/c</value>
+  </data>
+  <data name="NewLetter.Distributor" xml:space="preserve">
+    <value>NPP mới</value>
+  </data>
+  <data name="NewLetter.Sponsor" xml:space="preserve">
+    <value>BTTT Nhánh</value>
+  </data>
+  <data name="NewLettter.Platium" xml:space="preserve">
+    <value>BTTT cấp</value>
+  </data>
+  <data name="Common.Excel" xml:space="preserve">
+    <value>Xuất ra Excel</value>
+  </data>
+  <data name="DistributorLetter.AddNew" xml:space="preserve">
+    <value>Thêm mới</value>
+  </data>
+  <data name="DistributorLetter.OldPlatium" xml:space="preserve">
+    <value>Người bảo trợ trực tiếp Platium nhánh cũ</value>
+  </data>
+  <data name="DistributorLetter.OldSponsor" xml:space="preserve">
+    <value>Người bảo trợ trực tiếp nhánh cũ</value>
+  </data>
+  <data name="DataPurge.FailedToRegister" xml:space="preserve">
+    <value>Đã có lỗi khi đăng ký. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="DataPurge.Field.EndDate" xml:space="preserve">
+    <value>Đến ngày</value>
+  </data>
+  <data name="DataPurge.Field.PurgeDate" xml:space="preserve">
+    <value>Ngày chạy</value>
+  </data>
+  <data name="DataPurge.Field.StartDate" xml:space="preserve">
+    <value>Xóa HS từ ngày</value>
+  </data>
+  <data name="DataPurge.Grid.EndDate" xml:space="preserve">
+    <value>Đến ngày</value>
+  </data>
+  <data name="DataPurge.Grid.FileCount" xml:space="preserve">
+    <value>SL file</value>
+  </data>
+  <data name="DataPurge.Grid.PurgeDate" xml:space="preserve">
+    <value>Đợt xóa dữ liệu</value>
+  </data>
+  <data name="DataPurge.Grid.StartDate" xml:space="preserve">
+    <value>Xóa những HS có status Đã xóa từ ngày</value>
+  </data>
+  <data name="DataPurge.Grid.UserName" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="DataPurge.Register" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="DataPurge.RegisterDataPurge" xml:space="preserve">
+    <value>Đăng ký đợt xóa định kì</value>
+  </data>
+  <data name="DataPurge.SuccessToRegister" xml:space="preserve">
+    <value>Đăng ký đợt xóa định kì thành công.</value>
+  </data>
+  <data name="PageTitle.DataPurge" xml:space="preserve">
+    <value>Xóa dữ liệu định kì</value>
+  </data>
+  <data name="DataPurge.ConfirmDeletePurge" xml:space="preserve">
+    <value>Bạn có thật sự muốn xóa Đợt xóa dữ liệu này không?</value>
+  </data>
+  <data name="DataPurge.FailedToDeletePurge" xml:space="preserve">
+    <value>Đã có lỗi khi xóa Đợt xóa dữ liệu. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="DataPurge.SuccessToDeletePurge" xml:space="preserve">
+    <value>Xóa Đợt xóa dữ liệu thành công!</value>
+  </data>
+  <data name="ProfileBox.AddNewBox" xml:space="preserve">
+    <value>Thêm thùng mới</value>
+  </data>
+  <data name="ProfileBox.DiscardBoxes" xml:space="preserve">
+    <value>Hủy thùng chọn</value>
+  </data>
+  <data name="ProfileBox.FolderPath" xml:space="preserve">
+    <value>Lưu file vào</value>
+  </data>
+  <data name="DistributorLetter.NewDistNum" xml:space="preserve">
+    <value>MS mới</value>
+  </data>
+  <data name="DistributorLetter.OldDistNum" xml:space="preserve">
+    <value>MS cũ</value>
+  </data>
+  <data name="Profile.ID" xml:space="preserve">
+    <value>HS của ADA</value>
+  </data>
+  <data name="Profile.ScanDate" xml:space="preserve">
+    <value>Ngày scan</value>
+  </data>
+  <data name="Profile.Status" xml:space="preserve">
+    <value>Trạng Thái HS</value>
+  </data>
+  <data name="ProfileBox.Discard" xml:space="preserve">
+    <value>Hủy Thùng</value>
+  </data>
+  <data name="HomePage.WelcomeMessage" xml:space="preserve">
+    <value>Chào mừng bạn đến với ABO!</value>
+  </data>
+  <data name="Profile.FailedToChangeStatusProfileBoxes" xml:space="preserve">
+    <value>Không thễ thực hiện tác vụ này</value>
+  </data>
+  <data name="Profile.FailedToDeleteProfileBoxes" xml:space="preserve">
+    <value>Lỗi hủy thùng</value>
+  </data>
+  <data name="Profile.FailedToDiscardProfileBoxes" xml:space="preserve">
+    <value>Cần quyền TeamLeader để sử dụng chức năng này. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.FailedToMoveProfile" xml:space="preserve">
+    <value>Lỗi chuyển HS</value>
+  </data>
+  <data name="Profile.FailedToMoveProfileBoxes" xml:space="preserve">
+    <value>Cần quyền TeamLeader để sử dụng chức năng này. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.FailedToPackagedProfileBoxes" xml:space="preserve">
+    <value>Cần quyền TeamLeader để sử dụng chức năng này.Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.FailedToStoreProfileBoxes" xml:space="preserve">
+    <value>Cần quyền TeamLeader để sử dụng chức năng này. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="Profile.MoveToError" xml:space="preserve">
+    <value>Chỉ di chuyển HS có trạng thái đang mở</value>
+  </data>
+  <data name="Profile.SuccessToDeleteProfileBoxes" xml:space="preserve">
+    <value>Đã hủy thùng</value>
+  </data>
+  <data name="Profile.SuccessToDiscardProfileBoxes" xml:space="preserve">
+    <value>Đã hủy thùng</value>
+  </data>
+  <data name="Profile.SuccessToMoveProfile" xml:space="preserve">
+    <value>HS Chuyển thành công</value>
+  </data>
+  <data name="Profile.SuccessToMoveProfileBoxes" xml:space="preserve">
+    <value>Đã chuyển thùng</value>
+  </data>
+  <data name="Profile.SuccessToPackagedProfileBoxes" xml:space="preserve">
+    <value>Đã đóng gói thùng</value>
+  </data>
+  <data name="Profile.SuccessToStoreProfileBoxes" xml:space="preserve">
+    <value>Đã lưu kho</value>
+  </data>
+  <data name="ProfileBox.DiscardError" xml:space="preserve">
+    <value>Chỉ được hủy thùng có trạng thái cần hủy</value>
+  </data>
+  <data name="ProfileBoxDetail.ExportToExcel" xml:space="preserve">
+    <value>Xuất DS HS</value>
+  </data>
+  <data name="ProfileBoxDetail.Moved" xml:space="preserve">
+    <value>Chuyển các HS đã chọn sang thùng</value>
+  </data>
+  <data name="Common.AppDescription" xml:space="preserve">
+    <value>ABO System</value>
+  </data>
+  <data name="Enums.ProfileStatus.Deleted" xml:space="preserve">
+    <value>Đã xóa</value>
+  </data>
+  <data name="Enums.ProfileStatus.NeedToDelete" xml:space="preserve">
+    <value>Cần xóa</value>
+  </data>
+  <data name="Enums.ProfileStatus.Valid" xml:space="preserve">
+    <value>Hiệu Lực</value>
+  </data>
+  <data name="Profile.FailedToDiscardProfileBoxes2" xml:space="preserve">
+    <value>Hồ sơ trong thùng phải có trạng thái đã xóa hoặc thùng không có hồ sơ nào.</value>
+  </data>
+  <data name="PageTitle.User" xml:space="preserve">
+    <value>Danh sách user</value>
+  </data>
+  <data name="User.Add" xml:space="preserve">
+    <value>Thêm user</value>
+  </data>
+  <data name="User.AddNew" xml:space="preserve">
+    <value>Thêm mới</value>
+  </data>
+  <data name="User.ConfirmDelete" xml:space="preserve">
+    <value>Bạn có chắc muốn xóa User này không?</value>
+  </data>
+  <data name="User.Edit" xml:space="preserve">
+    <value>Chỉnh sửa</value>
+  </data>
+  <data name="User.ErrorToAddExistedUser" xml:space="preserve">
+    <value>User đã tồn tại.</value>
+  </data>
+  <data name="User.ErrorToDeleteUser" xml:space="preserve">
+    <value>Đã có lỗi khi xóa user. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="User.ErrorToEditUser" xml:space="preserve">
+    <value>Đã có lỗi khi cập nhật. Vui lòng liên hệ Admin!</value>
+  </data>
+  <data name="User.Excel" xml:space="preserve">
+    <value>Xuất ra Excel</value>
+  </data>
+  <data name="User.FullName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="User.Name" xml:space="preserve">
+    <value>User Id</value>
+  </data>
+  <data name="User.SuccessToDeleteUser" xml:space="preserve">
+    <value>Xóa user thành công</value>
+  </data>
+  <data name="User.SuccessToEditUser" xml:space="preserve">
+    <value>Cập nhật user thành công</value>
+  </data>
+  <data name="User.Warehouse" xml:space="preserve">
+    <value>Kho</value>
+  </data>
+  <data name="PageTitle.PrintLetter" xml:space="preserve">
+    <value>In thư tái gia nhập</value>
+  </data>
+  <data name="PageTitle.ProfileBox" xml:space="preserve">
+    <value>Quản lý thùng HS</value>
+  </data>
+  <data name="Profile.FailedToAddProfileBoxDulicatePath" xml:space="preserve">
+    <value>Tên thùng đã tồn tại. Vui lòng sử dụng tên khác</value>
+  </data>
+  <data name="Profile.DownloadedFileNotFound" xml:space="preserve">
+    <value>File hồ sơ không tồn tại. Vui lòng nhấn nút "Back" của trình duyệt để quay về trang trước!</value>
+  </data>
+  <data name="Profile.SelectOneProfileOnly" xml:space="preserve">
+    <value>Bạn chỉ được chọn 1 hồ sơ để thực hiện tác vụ này!</value>
+  </data>
+  <data name="Profile.SelectProfileRequired" xml:space="preserve">
+    <value>Bạn chưa chọn hồ sơ nào!</value>
+  </data>
+  <data name="ProfileBox.Location" xml:space="preserve">
+    <value>Vị trí ở kho lưu</value>
+  </data>
+  <data name="NewLetter.OldDistributor" xml:space="preserve">
+    <value>BTTT nhánh cũ</value>
+  </data>
+  <data name="Help.ForDR" xml:space="preserve">
+    <value>Dành cho DR</value>
+  </data>
+  <data name="Profile.SuccessToAddProfileBox" xml:space="preserve">
+    <value>Tạo thùng thành công.</value>
+  </data>
+  <data name="Help.ForDRLeader" xml:space="preserve">
+    <value>Dành cho DR Leader</value>
+  </data>
+  <data name="ProfileBox.Detail" xml:space="preserve">
+    <value>Chi tiết thùng HS</value>
+  </data>
+  <data name="Help.ForGuess" xml:space="preserve">
+    <value>Dành cho Khách</value>
+  </data>
+  <data name="ProfileBox.ProfileCount" xml:space="preserve">
+    <value>Số lượng HS</value>
+  </data>
+  <data name="Menu.Help" xml:space="preserve">
+    <value>Hướng dẫn sử dụng</value>
+  </data>
+  <data name="PageTitle.Help" xml:space="preserve">
+    <value>Hướng dẫn sử dụng</value>
+  </data>
+  <data name="DistributorLetter.Warehouse" xml:space="preserve">
+    <value>Kho</value>
+  </data>
+  <data name="NewLetter.Creator" xml:space="preserve">
+    <value>Người tạo</value>
+  </data>
+  <data name="NewLetter.Warehouse" xml:space="preserve">
+    <value>Chi Nhánh</value>
+  </data>
+  <data name="ProfileBox.ProfileBoxName" xml:space="preserve">
+    <value>Tên Thùng</value>
+  </data>
+  <data name="Distributor.NotScanned.UpdateType" xml:space="preserve">
+    <value>Loại thay đổi</value>
+  </data>
+  <data name="Distributor.NotScanned.WarehouseId" xml:space="preserve">
+    <value>Kho</value>
+  </data>
+  <data name="NewLetter.Telephone" xml:space="preserve">
+    <value>SĐT (Mobile)</value>
+  </data>
+  <data name="NewLetter.DistributorName" xml:space="preserve">
+    <value>Tên NPP mới</value>
+  </data>
+  <data name="NewLetter.OldDistributorName" xml:space="preserve">
+    <value>Tên BTTT nhánh cũ</value>
+  </data>
+  <data name="NewLetter.SponsorName" xml:space="preserve">
+    <value>Tên BTTT nhánh</value>
+  </data>
+  <data name="NewLettter.PlatiumName" xml:space="preserve">
+    <value>Tên BTTT cấp</value>
+  </data>
+  <data name="ProfileBox.Label" xml:space="preserve">
+    <value>In Label</value>
+  </data>
+  <data name="AlertifyDialog.Canceled" xml:space="preserve">
+    <value>Đã chấm dứt thực thi</value>
+  </data>
+  <data name="AlertifyDialog.Confirmed" xml:space="preserve">
+    <value>Đã tiếp tục xử lý</value>
+  </data>
+  <data name="AlertifyDialog.ConfirmTitle" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="Common.Execute" xml:space="preserve">
+    <value>Xử lý</value>
+  </data>
+  <data name="Menu.ProfileImageMerging" xml:space="preserve">
+    <value>Gắn hình vào hợp đồng</value>
+  </data>
+  <data name="PageTitle.ProfileImageMerging" xml:space="preserve">
+    <value>Chèn ảnh vào hồ sơ</value>
+  </data>
+  <data name="ProfileImageMerging.AdaNo" xml:space="preserve">
+    <value>Mã số ADA cần lấy hồ sơ</value>
+  </data>
+  <data name="ProfileImageMerging.ContractFileNotFound" xml:space="preserve">
+    <value>Không tìm thấy file {0} trên server. Vui lòng liên hệ admin!</value>
+  </data>
+  <data name="ProfileImageMerging.FailedToFindDistributor" xml:space="preserve">
+    <value>Không tìm thấy NPP này!</value>
+  </data>
+  <data name="ProfileImageMerging.FailedToFindImages" xml:space="preserve">
+    <value>Không tìm thấy hình ở WTA!</value>
+  </data>
+  <data name="ProfileImageMerging.FailedToFindProfile" xml:space="preserve">
+    <value>Hồ sơ NPP này chưa được upload lên!</value>
+  </data>
+  <data name="ProfileImageMerging.NotEnoughImage" xml:space="preserve">
+    <value>Không tìm thấy đủ hình ở WTA! Tiếp tục nhấn xử lý để bỏ qua và tải xuống</value>
+  </data>
+  <data name="ProfileImageMerging.ProfilePageIndex" xml:space="preserve">
+    <value>Hợp đồng nằm ở vị trí trang thứ</value>
+  </data>
+  <data name="ProfileImageMerging.SecondaryPoint" xml:space="preserve">
+    <value>Tọa độ để hình cho người chồng / vợ</value>
+  </data>
+  <data name="ProfileImageMerging.UndersignedPoint" xml:space="preserve">
+    <value>Tọa độ để hình cho người đứng đơn</value>
+  </data>
+  <data name="ProfileImageMerging.Cancel" xml:space="preserve">
+    <value>Đã hủy thao tác</value>
+  </data>
+  <data name="ProfileImageMerging.ConfirmModal" xml:space="preserve">
+    <value>Xin vui lòng xác nhận</value>
+  </data>
+  <data name="ProfileImageMerging.FirstImage.NotFound" xml:space="preserve">
+    <value>Không tìm thấy ảnh của người đứng tên</value>
+  </data>
+  <data name="ProfileImageMerging.LoadImageButton" xml:space="preserve">
+    <value>Hiển thị hình ảnh</value>
+  </data>
+  <data name="ProfileImageMerging.LoadProfileButton" xml:space="preserve">
+    <value>Hiển thị hợp đồng</value>
+  </data>
+  <data name="ProfileImageMerging.Scale" xml:space="preserve">
+    <value>Điều chỉnh tỉ lệ ảnh</value>
+  </data>
+  <data name="ProfileImageMerging.SecondImage.NotFound" xml:space="preserve">
+    <value>Không tìm thấy ảnh của người chồng/vợ</value>
+  </data>
+  <data name="ProfileImageMerging.FirstPersonUploadImage" xml:space="preserve">
+    <value>Hình của người đứng đơn</value>
+  </data>
+  <data name="ProfileImageMerging.LoadLocalImageButton" xml:space="preserve">
+    <value>Hiển thị ảnh từ máy</value>
+  </data>
+  <data name="ProfileImageMerging.SecondPersonUploadImage" xml:space="preserve">
+    <value>Hình của người chồng/vợ</value>
+  </data>
+  <data name="ProfileImageMerging.UploadImageButton" xml:space="preserve">
+    <value>Upload ảnh</value>
+  </data>
+  <data name="ProfileImageMerging.UploadImageSuccessMessage" xml:space="preserve">
+    <value>Đã upload ảnh thành công, xin vui lòng nhấn nút 'Hiển thị hình ảnh' để hiển thị ảnh từ máy chủ</value>
+  </data>
+  <data name="ProfileImageMerging.UploadImage.NoFile" xml:space="preserve">
+    <value>Không có hình gì để upload.</value>
+  </data>
+  <data name="ProfileImageMerging.MissingProfileId" xml:space="preserve">
+    <value>Xin vui lòng nhập mã NPP!</value>
+  </data>
+  <data name="ProfileImageMerging.MissingProfileImage" xml:space="preserve">
+    <value>Không tìm thấy hình của NPP này!</value>
+  </data>
+</root>

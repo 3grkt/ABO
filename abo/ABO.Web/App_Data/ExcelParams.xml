@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ExcelParams>
+  <!-- Distributor Updates export -->
+  <Template name="DistributorUpdates">
+    <Param name="TableStartRow">8</Param>
+    <!-- Cells -->
+    <Param name="CellExportTime">B2</Param>
+    <Param name="CellRecordCount">B3</Param>
+    <Param name="CellSearchDate">B5</Param>
+    <!-- Columns -->
+    <Param name="ColDistNumber">1</Param>
+    <Param name="ColDistName">2</Param>
+    <Param name="ColJoinDate">3</Param>
+    <Param name="ColExpiryDate">4</Param>
+    <Param name="ColUpdatedType">5</Param>
+  </Template>
+  <Template name="ProfileBoxDetail">
+    <Param name="TableStartRow">9</Param>
+   <!-- Cells -->
+    <Param name="BoxName">B2</Param>
+    <Param name="Office">B3</Param>
+    <Param name="Warehouse">B4</Param>
+    <Param name="Location">B5</Param>
+    <Param name="ProfileCount">B6</Param>
+
+    <!-- Columns -->
+    <Param name="ADA">1</Param>
+    <Param name="ScanedDate">2</Param>
+    <Param name="ProfileStatus">3</Param>
+  </Template>
+</ExcelParams>

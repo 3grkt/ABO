@@ -1,0 +1,245 @@
+﻿@model ABO.Web.Models.ProfileBox.ProfileBoxModel
+
+@using MvcContrib.UI
+@using MvcContrib.Pagination
+@using MvcContrib.UI.Grid
+@using MvcContrib.UI.Pager
+@{
+    ViewBag.Title = T("ProfileBox.Detail");
+    bool isEditable = Html.HasPermission(UserPermission.ManageProfileBox);
+}
+<div>
+
+    @using (Html.BeginForm("Detail", "ProfileBox", FormMethod.Post, new { @id = "detailForm" }))
+    {
+@* Profile Box Information *@
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.Name)
+            </div>
+            <div class="col-md-4">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.Name, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.OfficeName)
+            </div>
+            <div class="col-md-3">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.OfficeName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.CreatedDate)
+            </div>
+            <div class="col-md-4">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.CreatedDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.ProfileType)
+            </div>
+            <div class="col-md-3">
+                @if (isEditable)
+                {
+                    @Html.DropDownListFor(m => m.ProfileBox.ProfileType, Model.ProfileBox.ProfileTypeList, new { @class = "form-control" })
+                }
+                else
+                {
+                    @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.ProfileTypeName, new { @class = "form-control" })
+                }
+            </div>
+        </div>
+
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.Status)
+            </div>
+            <div class="col-md-4">
+                @if (isEditable)
+                {
+                    @Html.DropDownListFor(m => m.ProfileBox.Status, Model.ProfileBox.StatusList, new { @class = "form-control" })
+                }
+                else
+                {
+                    @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.StatusName, new { @class = "form-control" })
+                }
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.UpdatedDate)
+            </div>
+            <div class="col-md-3">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.UpdatedDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.ProfileCount)
+            </div>
+            <div class="col-md-4">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.ProfileCount, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="col-md-2 ">
+                @Html.LabelFor(m => m.ProfileBox.Creator)
+            </div>
+            <div class="col-md-3">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.Creator, new { @class = "form-control" })
+            </div>
+        </div>
+        
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.Warehouse)
+            </div>
+            <div class="col-md-4">
+                @if (isEditable)
+                {
+                    @Html.DropDownListFor(m => m.ProfileBox.Warehouse, Model.ProfileBox.WarehouseList, new { @class = "form-control" })
+                }
+                else
+                {
+                    @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.WarehouseName, new { @class = "form-control" })
+                }
+
+            </div>
+
+            <div class="col-md-2 ">
+                @Html.LabelFor(m => m.ProfileBox.Location)
+            </div>
+            <div class="col-md-3">
+                @if (isEditable)
+                {
+                    @Html.DropDownListFor(m => m.ProfileBox.Location, Model.LocationList, "", new { @class = "form-control", @name = "abc" })
+                }
+                else
+                {
+                    @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.LocationName, new { @class = "form-control" })
+                }
+            </div>
+        </div>
+        
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ProfileBox.FolderPath)
+            </div>
+            <div class="col-md-9">
+                @Html.ReadOnlyTextBoxFor(m => m.ProfileBox.FolderPath, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+
+        </div>
+      
+        
+                if (isEditable)
+                {
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+            <div class="col-md-offset-4" style="padding-top: 10px">
+                <input type="submit" class="btn btn-primary" name="pakaged" value="@T("Enums.ProfileBoxStatus.Packed")">
+                <input type="submit" class="btn btn-primary" name="moved" value="@T("Enums.ProfileBoxStatus.Moved")">
+                <input type="submit" class="btn btn-primary" name="store" value="@T("Enums.ProfileBoxStatus.Stored")">
+                <input type="submit" class="btn btn-primary" name="discard" value="@T("ProfileBox.Discard")">
+                <input type="submit" class="btn btn-primary" name="printLabel" value="@T("ProfileBox.Label")">
+            </div>
+        </div>
+                }
+        
+@* Profile List *@
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+            <div class="col-md-4">
+                Danh sách HS
+            </div>
+
+        </div>
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+            <div class="col-md-5 col-lg-4">
+                Chỉ hiện thị danh sách HS ở trạng thái 
+            </div>
+            <div class="col-md-3 col-lg-2">
+                @Html.DropDownListFor(m => m.StatusId, Model.StatusList, new { @class = "form-control" })
+            </div>
+        </div>
+       
+    }
+    @using (Html.BeginForm())
+    {
+        @Html.Grid(Model.Profiles).Columns(column =>
+   {
+       column.For(model => Html.CheckBox("IsSelected-" + model.Id))
+               .Header("<th><input type='checkbox' id='headerCheckbox' /></th>")
+               .Attributes(style => "width: 3%;");
+       column.For(model => Html.ActionLink(model.DistNumber, "Index", "Profile", new { distNumber = model.DistNumber }, null))
+           .Named(T("Profile.ID"))
+           .SortColumnName("")
+           .Attributes(style => "width: 10%;");
+       column.For(model => model.ScannedDate).Format("{0:dd/MM/yyyy}")
+           .Named(T("Profile.ScanDate")).SortColumnName("").Attributes(style => "width: 15%;");
+       column.For(model => model.StatusName)
+           .Named(T("Profile.Status"))
+           .SortColumnName("")
+           .Attributes(style => "width: 10%; text-align: right;")
+           .HeaderAttributes(style => "text-align: right;");
+
+   }).Empty(T("Common.Message.NoRecordFound"))
+        @Html.GetPager(Model.Pager)
+    
+        @Html.Hidden("fromBoxId", Model.ProfileBox.Id);
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" name="ExportToExcel" value="@T("ProfileBoxDetail.ExportToExcel")">
+            </div>
+        </div>
+                                                     if (isEditable)
+                                                     {
+        <div class="row down-space-10" style="padding-left: 15px; padding-right: 15px;">
+
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" name="movedBox" value="@T("ProfileBoxDetail.Moved")">
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(m => m.BoxId, ViewBag.OpenBoxes as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+        </div>
+                                                     }
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#StatusId').change(function () {
+            //alert(this.selectedIndex);
+            var form = $('#detailForm');
+            form = form.attr("method", "get");
+            form.submit();
+        });
+
+        $('#headerCheckbox').change(function () {
+            var isChecked = $('#headerCheckbox').prop('checked');
+            if (isChecked)
+                $("[id^='IsSelected']").prop('checked', true);
+            else
+                $("[id^='IsSelected']").prop('checked', false);
+        });
+
+        $('#ProfileBox_Warehouse').change(function () {
+            $('#detailForm').attr('method', 'Get');
+            $('#detailForm').submit();
+        });
+        //$('#ProfileBox_ProfileType :selected').text() == 'Hóa đơn'
+        if ( (! @Model.ProfileBox.Scanned.ToString().ToLower())   &&
+        $('#ProfileBox_Status :selected').text() == 'Đang Mở'){
+            $('#ProfileBox_ProfileCount').removeAttr('readonly');
+        }
+    });
+
+</script>

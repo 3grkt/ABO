@@ -1,0 +1,78 @@
+﻿<div class="modal fade" id="modalDialog" role="dialog" tabindex="-1" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@T("Common.Close")</span></button>
+                <h4 class="modal-title" id="modelLabel">
+                    @T("Common.Notification")
+                    <!-- Default title -->
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-normal" data-dismiss="modal" id="modalDialogCancel">@T("Common.No")</button>
+                <button type="button" class="btn btn-default" id="modalDialogConfirm">@T("Common.Yes")</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var modalDialogConfirmMethod;
+    var modalDialogRelatedTarget;
+
+    $('#modalDialog').on('show.bs.modal', function (e) {
+        // Save related target
+        modalDialogRelatedTarget = $(e.relatedTarget);
+
+        // Set message/html
+        var message = modalDialogRelatedTarget.attr('data-message');
+        var containerId = modalDialogRelatedTarget.attr('data-containerId');
+        if (containerId != null && containerId != '') {
+            var container = $('#' + containerId);
+            $(this).find('.modal-body').html(container);
+            if (container.css('display') == 'none')
+                container.css('display', 'block');
+        } else {
+            $(this).find('.modal-body p').text(message);
+        }
+
+        // Set title
+        var title = modalDialogRelatedTarget.attr('data-title');
+        if (title != '') {
+            $(this).find('.modal-title').text(title);
+        } else {
+            $(this).find('.modal-title').text('@T("Common.Notification")');
+        }
+
+        // Check if show confirm button
+        if (modalDialogRelatedTarget.attr('data-showconfirm') == 'false') {
+            $(this).find('.modal-footer #modalDialogCancel').text('@T("Common.Close")');
+            $(this).find('.modal-footer #modalDialogConfirm').hide();
+        } else {
+            $(this).find('.modal-footer #modalDialogCancel').text('@T("Common.No")');
+            $(this).find('.modal-footer #modalDialogConfirm').show();
+        }
+
+        // Check if show footer
+        if (modalDialogRelatedTarget.attr('data-showfooter') == 'false') {
+            $(this).find('.modal-footer').hide();
+        } else {
+            $(this).find('.modal-footer').show();
+        }
+
+        modalDialogConfirmMethod = modalDialogRelatedTarget.attr('data-confirmAction');
+
+        // Run 'onShown' event
+        var onShown = modalDialogRelatedTarget.attr('data-onShown');
+        if (onShown != '')
+            if (window[onShown]($(this).find('.modal-body')) === false)
+                return false;
+    });
+
+    $('#modalDialog').find('.modal-footer #modalDialogConfirm').on('click', function () {
+        window[modalDialogConfirmMethod]({ relatedTarget: modalDialogRelatedTarget });
+        $('#modalDialog').modal('hide');
+    });
+</script>

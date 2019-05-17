@@ -1,0 +1,53 @@
+﻿@using MvcContrib.UI.Pager
+@using MvcContrib.Pagination
+@model IPagination
+
+@if (Model.TotalItems > 0)
+{
+    <div class="grid-pager">
+        <div class="pull-left">
+            <span>@T("Common.Page"):</span>
+            @if (Model.PageNumber != 1)
+            {
+                <a href="@Url.Paging(1, Model.PageSize)" title="@T("Common.Page.First")"><i class="glyphicon glyphicon-step-backward"></i></a>
+                <a href="@Url.Paging(Model.PageNumber - 1, Model.PageSize)" title="@T("Common.Page.Previous")"><i class="glyphicon glyphicon-backward"></i></a>
+            }
+
+            <input type="text" value="@Model.PageNumber" class="page-number" />
+            @(" / " + Model.TotalPages.ToString("N0"))
+            <button type="button" id="btnChangePage" class="page-change" title="@T("Common.Page.Go.Hint")">@T("Common.Page.Go")</button>
+
+            @if (Model.PageNumber != Model.TotalPages)
+            {
+                <a href="@Url.Paging(Model.PageNumber + 1, Model.PageSize)" title="@T("Common.Page.Next")"><i class="glyphicon glyphicon-forward"></i></a>
+                <a href="@Url.Paging(Model.TotalPages, Model.PageSize)" title="@T("Common.Page.Last")"><i class="glyphicon glyphicon-step-forward"></i></a>
+            }
+        </div>
+        <div class="pull-right">
+            <span>@T("Common.Page.Display")</span>
+            @Html.GetPageSizeOptions("PageSizeOption", Model.PageSize, new { @class = "page-size" })
+            / @T("Common.Page.FoundRecords", Model.TotalItems.ToString("N0"))
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.page-change').click(function () {
+                var urlTemplate = '@Url.Paging(-9999, Model.PageSize)';
+                var pageNumber = parseInt($('.page-number').val());
+                if (pageNumber != NaN && pageNumber != parseInt('@Model.PageNumber') && pageNumber >= 1 && pageNumber <= parseInt('@Model.TotalPages')) {
+                    location.href = urlTemplate.replace('-9999', pageNumber);
+                }
+                else {
+                    $('.page-number').val(@Model.PageNumber);
+                }
+            });
+
+            $('.page-size').change(function () {
+                var urlTemplate = '@Url.Paging(Model.PageNumber, -9999)';
+                location.href = urlTemplate.replace('-9999', $(this).val());
+            });
+        });
+    </script>
+}

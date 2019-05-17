@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = T("PageTitle.Help");
+}
+
+<ul>
+    <li><a href="@Url.Action("DownloadHelp", "Home", new { type = HelpFileType.Guess })">@T("Help.ForGuess")</a></li>
+    <li><a href="@Url.Action("DownloadHelp", "Home", new { type = HelpFileType.DR })">@T("Help.ForDR")</a></li>
+    <li><a href="@Url.Action("DownloadHelp", "Home", new { type = HelpFileType.DRLeader })">@T("Help.ForDRLeader")</a></li>
+</ul>
